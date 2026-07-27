@@ -18,7 +18,9 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: "*.tex"
+          root_file: |
+            cv-talvin-ackbaraly-fr.tex
+            cv-talvin-ackbaraly-en.tex
           args: -pdf -interaction=nonstopmode -halt-on-error
 
       - name: Create or Update GitHub Release
@@ -33,3 +35,6 @@ jobs:
             cv-talvin-ackbaraly-en.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger Vercel Rebuild
+        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
