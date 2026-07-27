@@ -1,0 +1,35 @@
+name: Compile LaTeX & Publish Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: "*.tex"
+          args: -pdf -interaction=nonstopmode -halt-on-error
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest Compiled Resume
+          draft: false
+          prerelease: false
+          files: |
+            cv-talvin-ackbaraly-fr.pdf
+            cv-talvin-ackbaraly-en.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
