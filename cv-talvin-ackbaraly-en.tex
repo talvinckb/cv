@@ -1,174 +1,136 @@
 %% ─────────────────────────────────────────────────────────────────────────────
 %% CV — Talvin Ackbaraly (English Version)
-%% Stack : LaTeX (pdflatex) — 1 Page Strict Architecture
+%% Serif (XCharter), black text, thin rules, bullets, no colours/icons
+%% Compile: latexmk -pdf cv-talvin-ackbaraly-en.tex
 %% ─────────────────────────────────────────────────────────────────────────────
-\documentclass[10pt, a4paper]{article}
+\documentclass[10.5pt, a4paper]{extarticle}
 
-%% ── Packages ─────────────────────────────────────────────────────────────────
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage[
-  top=1.4cm, bottom=1.4cm,
-  left=1.6cm, right=1.6cm
-]{geometry}
+\usepackage[top=1.3cm, bottom=1.3cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage{XCharter}
 \usepackage{microtype}
-
-% Modern Sans-Serif Font (Helvetica / TeX Gyre Heros)
-\usepackage{tgheros}
-\renewcommand{\familydefault}{\sfdefault}
-
-\usepackage{parskip}
-\usepackage[explicit]{titlesec}
+\usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{tabularx}
-\usepackage{array}
 \usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{fontawesome5}
-\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
 
-%% ── Color Palette ────────────────────────────────────────────────────────────
-\definecolor{accent}{HTML}{0284c7}      % Saphir Blue
-\definecolor{dark}{HTML}{0f172a}        % Slate 900
-\definecolor{textmain}{HTML}{334155}    % Slate 700
-\definecolor{muted}{HTML}{64748b}       % Slate 500
-\definecolor{subtle}{HTML}{94a3b8}      % Slate 400
-\definecolor{rule}{HTML}{e2e8f0}        % Slate 200
-\definecolor{tagbg}{HTML}{f1f5f9}       % Slate 100
+\hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
 
-%% ── Hyperlinks ───────────────────────────────────────────────────────────────
-\hypersetup{
-  colorlinks = true,
-  urlcolor   = accent,
-  linkcolor  = accent,
-  pdftitle   = {Resume — Talvin Ackbaraly},
-  pdfauthor  = {Talvin Ackbaraly},
-}
-
-\color{textmain}
-
-%% ── Section Typography ───────────────────────────────────────────────────────
-\titleformat{\section}[block]
-  {\Large\bfseries\color{dark}}
-  {}
-  {0em}
-  {#1\\[-0.2\baselineskip]{\color{accent}\titlerule[1.5pt]}\vspace{4pt}}
-
-\titlespacing*{\section}{0pt}{14pt}{0pt}
-
-%% ── Helpers & Micro-Components ───────────────────────────────────────────────
-\newcommand{\cvtag}[1]{%
-  \tikz[baseline]\node[anchor=base, draw=none, fill=tagbg, rounded corners=3pt, inner xsep=5pt, inner ysep=3pt, text height=1.4ex, text depth=0.2ex, text=muted, font=\scriptsize\bfseries] {#1};%
-}
-
-\newcommand{\period}[1]{\textcolor{subtle}{\small #1}}
-\newcommand{\company}[1]{\textbf{\textcolor{accent}{#1}}}
-
-\newcommand{\projectItem}[3]{%
-  \noindent
-  \begin{tabularx}{\textwidth}{@{}p{1.5cm} X >{\raggedleft\arraybackslash}p{3.5cm}@{}}
-    \textbf{#1} & #2 & #3
-  \end{tabularx}%
-}
-
-%% ── Line Header ──────────────────────────────────────────────────────────────
-\newcommand{\expline}[3]{%
-  \textbf{#1} \hfill \period{#3}\\
-  \company{#2}%
-}
-
-%% ── Config ───────────────────────────────────────────────────────────────────
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+%% Section: small caps, thin rule underneath
+\titleformat{\section}{\large\scshape}{}{0pt}{}[\vspace{-6pt}\rule{\textwidth}{0.4pt}]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+\setlist[itemize]{leftmargin=1.1em, label={\textbullet}, topsep=2pt, itemsep=1pt, parsep=0pt}
+
+%% \entry{Title}{Date}{Subtitle}{Right-hand detail}
+\newcommand{\entry}[4]{%
+  \textbf{#1} \hfill #2\\
+  \textit{#3} \hfill \textit{#4}\par
+}
+\newcommand{\tech}[1]{\hfill{\small\textit{#1}}}
 
 \begin{document}
 
 %% ══ HEADER ═══════════════════════════════════════════════════════════════════
-\begin{tabularx}{\textwidth}{@{}X r@{}}
-  \begin{minipage}[t]{\linewidth}
-    \vspace{0pt}
-    {\Huge\bfseries\color{dark}Talvin Ackbaraly}
-
-    \vspace{4pt}
-    {\large\color{muted}5th year student at EPITA — Computer Engineering}
-
-    \vspace{6pt}
-    \tikz\node[draw=accent!30, fill=accent!8, rounded corners=4pt, inner xsep=8pt, inner ysep=4pt, text=accent, font=\footnotesize\bfseries] {\faIcon{circle}~Looking for a 6-month final-year internship — starting early Feb. 2027};
-  \end{minipage}
-  &
-  \begin{tabular}[t]{@{}r@{}}
-    \faIcon{globe}~\href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com} \\[3.5pt]
-    \faIcon{linkedin}~\href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly} \\[3.5pt]
-    \faIcon{envelope}~\href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \\[3.5pt]
-    \faIcon{phone}~\href{tel:+33769389008}{+33 7 69 38 90 08} \\[3.5pt]
-    \faIcon{github}~\href{https://github.com/talvinckb}{github.com/talvinckb}
-  \end{tabular}
-\end{tabularx}
-
-\vspace{6pt}
+\begin{center}
+  {\fontsize{24}{28}\selectfont\scshape Talvin Ackbaraly}\\[5pt]
+  Engineering student — Computer Vision \& GPU Computing\\[3pt]
+  \small
+  \href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
+  \href{tel:+33769389008}{+33 7 69 38 90 08} \enspace·\enspace
+  \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\
+  \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
+  \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}\\[3pt]
+  \textit{Seeking a 6-month final-year internship starting February 2027}
+\end{center}
 
 %% ══ EDUCATION ════════════════════════════════════════════════════════════════
 \section{Education}
 
-\expline{Engineering Degree — Specialization in Image Processing}{EPITA — Paris}{Sept. 2022 - 2027}\\[2pt]
-Image processing \& synthesis, artificial intelligence and high-performance GPU computing.
+\entry{EPITA — Engineering School of Computer Science}{Sept. 2022 -- 2027}
+      {Master of Engineering, Image specialization}{Paris, France}
+{\small Image processing \& synthesis, computer vision, deep learning, GPU computing.}
 
-\vspace{6pt}
+\vspace{4pt}
+\entry{Université du Québec à Chicoutimi (UQAC)}{Jan. -- May 2024}
+      {Academic exchange semester}{Québec, Canada}
 
-\expline{Academic Exchange}{Université du Québec à Chicoutimi (UQAC) — Canada}{Jan. - May 2024}
+%% ══ PROJECTS ═════════════════════════════════════════════════════════════════
+\section{Projects}
 
-\vspace{6pt}
+\textbf{Illustration Detection for the BnF} — \textit{final-year project, team of 4, ongoing} \tech{PyTorch, YOLO26, Florence-2}
+\begin{itemize}
+  \item Building a pipeline to \textbf{detect and classify illustrations} in digitized documents of the French National Library.
+  \item Training and benchmarking detection and classification models (YOLO26, Florence-2) on a \textbf{30\,GB dataset}.
+  \item Defined the evaluation metrics with the client and present results in weekly meetings.
+\end{itemize}
 
-\textcolor{muted}{\faIcon{certificate}~\textbf{English}: TOEIC certified}
+\vspace{3pt}
+\textbf{Real-Time Motion Detection on GPU} — \textit{team of 4} \tech{CUDA, C++, Nsight}
+\begin{itemize}
+  \item Ported a video motion-detection pipeline from CPU to GPU, achieving a \textbf{24$\times$ speedup}.
+  \item Profiled and removed bottlenecks with NVIDIA Nsight.
+\end{itemize}
 
-%% ══ PROFESSIONAL EXPERIENCE ══════════════════════════════════════════════════
-\section{Professional Experience}
+\vspace{3pt}
+\textbf{Real-Time Fluid Simulation} — \textit{team of 2} \tech{C++, OpenGL, GLSL}
+\begin{itemize}
+  \item Built an SPH fluid engine simulating \textbf{75,000 particles at 60+ FPS}, with physics in compute shaders.
+\end{itemize}
 
-\textbf{Full-Stack \& DevOps Developer (Internship)} \hfill \cvtag{Full-Stack} \cvtag{DevOps} \cvtag{CI/CD} \cvtag{AWS} \cvtag{Agile} \\[2pt]
-\company{Studiocanal} \hfill \period{Sept. 2025 - Jan. 2026}\\[3pt]
-Developed full-stack modules for rights management, contracts, and film catalog distribution. Setup and maintained cloud infrastructures (CI/CD, AWS) within an Agile team.
+\vspace{3pt}
+\textbf{Automatic License Plate Recognition} — \textit{team of 2} \tech{C++, Python, OpenCV}
+\begin{itemize}
+  \item Built the full pipeline (preprocessing, candidate extraction, HOG features, Random Forest): \textbf{86\% precision}.
+  \item Benchmarked Python and C++ implementations; ran the project through GitLab issues, MRs and CI.
+\end{itemize}
 
-\vspace{6pt}
+\vspace{3pt}
+\textbf{Lung Function Prediction from CT Scans} — \textit{team of 4} \tech{Python, XGBoost, React, Docker}
+\begin{itemize}
+  \item Predicted forced vital capacity from lung segmentation using classical ML only (XGBoost, no CNNs allowed).
+  \item Delivered it as a web app with a React front-end, containerized with Docker and a GitLab CI pipeline.
+\end{itemize}
 
-\textbf{IT Consultant (Internship)} \hfill \cvtag{Django} \cvtag{Python} \cvtag{Agile SAFe}\\[2pt]
-\company{Hitachi Solutions France} \hfill \period{June - July 2022}\\[3pt]
-Prototyped a management application (suppliers, products, contracts) for Sonepar (Django, Agile SAFe).
+\vspace{3pt}
+\textbf{Systems Programming} — \textit{EPITA projects} \tech{C, Linux}
+\begin{itemize}
+  \item Implemented a memory allocator (malloc), a POSIX shell (42sh), a BitTorrent client and a \texttt{find} clone.
+\end{itemize}
 
-%% ══ ACADEMIC PROJECTS ════════════════════════════════════════════════════════
-\section{Academic Projects}
+%% ══ EXPERIENCE ═══════════════════════════════════════════════════════════════
+\section{Experience}
 
-\projectItem{PFEE}{Final-year project with the BNF (French National Library): segmentation and classification of illustrations from digitized documents. Model benchmarks (YOLO, Florence-2), metric definition, weekly client follow-ups. \textit{(Team of 4)}}{\cvtag{Deep Learning} \cvtag{YOLO} \cvtag{Project Management}}
+\entry{Studiocanal}{Sept. 2025 -- Jan. 2026}{Full-Stack \& DevOps Developer Intern}{Java, Spring Boot, Angular, AWS}
+\begin{itemize}
+  \item Developed new features for an internal rights, contracts and film catalogue platform used by \textbf{100+ employees}.
+  \item Set up the GitLab CI/CD pipeline for a new module; deployed across three environments (DEV, UAT, PROD).
+  \item Worked on the AWS infrastructure (EC2, RDS, IAM) within an Agile team.
+\end{itemize}
 
-\projectItem{ALPR}{Automatic License Plate Recognition. Classic detection (filters, morphology) and ML (86\% accuracy). Python vs C++ benchmarks. Complete GitLab workflow (issues, MRs, CI). \textit{(Team of 2)}}{\cvtag{OpenCV} \cvtag{C++} \cvtag{ML} \cvtag{GitLab CI}}
-
-\projectItem{IRGPU}{Real-time video motion detection. CPU $\rightarrow$ GPU port with a 24$\times$ performance gain (bottleneck analysis via Nsight). \textit{(Team of 4)}}{\cvtag{CUDA} \cvtag{C++} \cvtag{Nsight}}
-
-\projectItem{FluidSim}{Real-time fluid simulation engine based on SPH. Physical calculations managed via Compute Shaders and rendering via Framebuffers. \textit{(Team of 2)}}{\cvtag{C++} \cvtag{OpenGL} \cvtag{GLSL}}
-
-\projectItem{MedViz}{Prediction of Forced Vital Capacity from CT scans. Pulmonary segmentation and ML (XGBoost). Docker containerization, GitLab CI pipeline. \textit{(Team of 4)}}{\cvtag{Computer Vision} \cvtag{React} \cvtag{Docker} \cvtag{GitLab CI}}
+\vspace{3pt}
+\entry{Hitachi Solutions France}{June -- July 2022}{IT Consultant Intern}{Python, Django}
+\begin{itemize}
+  \item Prototyped a supplier, product and contract management application for Sonepar, following Agile SAFe.
+\end{itemize}
 
 %% ══ SKILLS ═══════════════════════════════════════════════════════════════════
 \section{Skills}
 
-\begin{tabularx}{\textwidth}{@{}p{5.2cm} X@{}}
-
-  \textbf{Computer Vision \& AI}
-  &
-  \cvtag{Image Processing} \cvtag{Deep Learning} \cvtag{Machine Learning} \cvtag{OpenCV} \cvtag{PyTorch}
-  \\[6pt]
-
-  \textbf{High-Performance Computing}
-  &
-  \cvtag{CUDA} \cvtag{GPU Computing} \cvtag{OpenGL} \cvtag{GLSL} \cvtag{Nsight}
-  \\[6pt]
-
-  \textbf{Development \& DevOps}
-  &
-  \cvtag{C++} \cvtag{Python} \cvtag{Docker} \cvtag{GitLab CI} \cvtag{AWS} \cvtag{React/Next.js} \cvtag{Django}
-
-  \\
-
+\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.2em}}X@{}}
+  \textbf{Computer Vision \& AI} & Image processing, deep learning, PyTorch, OpenCV, YOLO, Florence-2, XGBoost \\
+  \textbf{GPU \& Graphics}       & CUDA, Nsight, OpenGL, GLSL, compute shaders \\
+  \textbf{Programming}           & C, C++, Python, Java, TypeScript, SQL \\
+  \textbf{Frameworks}            & Spring Boot, Quarkus, FastAPI, Django, Angular, React \\
+  \textbf{Tools}                 & Linux, Git, Docker, GitLab CI, AWS, PostgreSQL, MongoDB, SQLite \\
+  \textbf{Languages}             & French (native), English (professional, TOEIC 845)
 \end{tabularx}
 
 \end{document}
