@@ -8,47 +8,59 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage[top=1.3cm, bottom=1.3cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage[top=1.2cm, bottom=1cm, left=1.8cm, right=1.8cm]{geometry}
 \usepackage{XCharter}
-\usepackage{microtype}
+\usepackage[letterspace=80]{microtype}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{tabularx}
+\usepackage{ragged2e}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
 
+\definecolor{soft}{gray}{0.35}   % secondary information (context, tech)
+\definecolor{hair}{gray}{0.6}    % section rules
+
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
+\linespread{1.0}
+\RaggedRight
 
-%% Section: small caps, thin rule underneath
-\titleformat{\section}{\large\scshape}{}{0pt}{}[\vspace{-6pt}\rule{\textwidth}{0.4pt}]
+%% Section: letter-spaced small caps over a hairline
+\titleformat{\section}
+  {\large\scshape\lsstyle}{}{0pt}{}
+  [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
 \titlespacing*{\section}{0pt}{10pt}{5pt}
 
-\setlist[itemize]{leftmargin=1.1em, label={\textbullet}, topsep=2pt, itemsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, label={\textbullet}, topsep=2pt, itemsep=1.5pt, parsep=0pt}
 
 %% \entry{Title}{Date}{Subtitle}{Right-hand detail}
 \newcommand{\entry}[4]{%
   \textbf{#1} \hfill #2\\
-  \textit{#3} \hfill \textit{#4}\par
+  \textit{#3} \hfill {\small\color{soft}\textit{#4}}\par
 }
-\newcommand{\tech}[1]{\hfill{\small\textit{#1}}}
+%% \project{Name}{Context}{Tech}
+\newcommand{\project}[3]{%
+  \textbf{#1}{\color{soft}\enspace—\enspace\textit{#2}} \hfill {\small\color{soft}\textit{#3}}\par
+}
+\newcommand{\gap}{\par\vspace{4pt}}
 
 \begin{document}
 
 %% ══ HEADER ═══════════════════════════════════════════════════════════════════
 \begin{center}
-  {\fontsize{24}{28}\selectfont\scshape Talvin Ackbaraly}\\[5pt]
-  Engineering student — Computer Vision \& GPU Computing\\[3pt]
-  \small
+  {\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
+  Engineering student — Computer Vision \& GPU Computing\\[5pt]
+  {\small
   \href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
   \href{tel:+33769389008}{+33 7 69 38 90 08} \enspace·\enspace
-  \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\
+  \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
-  \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}\\[3pt]
-  \textit{Seeking a 6-month final-year internship starting February 2027}
+  \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}\\[5pt]
+  \textit{Seeking a 6-month final-year internship starting February 2027}}
 \end{center}
 
 %% ══ EDUCATION ════════════════════════════════════════════════════════════════
@@ -56,51 +68,45 @@
 
 \entry{EPITA — Engineering School of Computer Science}{Sept. 2022 -- 2027}
       {Master of Engineering, Image specialization}{Paris, France}
-{\small Image processing \& synthesis, computer vision, deep learning, GPU computing.}
-
-\vspace{4pt}
+{\small\color{soft}Image processing \& synthesis, computer vision, deep learning, GPU computing.}
+\gap
 \entry{Université du Québec à Chicoutimi (UQAC)}{Jan. -- May 2024}
       {Academic exchange semester}{Québec, Canada}
 
 %% ══ PROJECTS ═════════════════════════════════════════════════════════════════
 \section{Projects}
 
-\textbf{Illustration Detection for the BnF} — \textit{final-year project, team of 4, ongoing} \tech{PyTorch, YOLO26, Florence-2}
+\project{Illustration Detection for the BnF}{final-year project, team of 4, ongoing}{PyTorch, YOLO26, Florence-2}
 \begin{itemize}
-  \item Building a pipeline to \textbf{detect and classify illustrations} in digitized documents of the French National Library.
+  \item Building a pipeline to \textbf{detect and classify illustrations} in the digitized collections of the French National Library.
   \item Training and benchmarking detection and classification models (YOLO26, Florence-2) on a \textbf{30\,GB dataset}.
   \item Defined the evaluation metrics with the client and present results in weekly meetings.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Real-Time Motion Detection on GPU} — \textit{team of 4} \tech{CUDA, C++, Nsight}
+\gap
+\project{Real-Time Motion Detection on GPU}{team of 4}{CUDA, C++, Nsight}
 \begin{itemize}
   \item Ported a video motion-detection pipeline from CPU to GPU, achieving a \textbf{24$\times$ speedup}.
   \item Profiled and removed bottlenecks with NVIDIA Nsight.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Real-Time Fluid Simulation} — \textit{team of 2} \tech{C++, OpenGL, GLSL}
+\gap
+\project{Real-Time Fluid Simulation}{team of 2}{C++, OpenGL, GLSL}
 \begin{itemize}
   \item Built an SPH fluid engine simulating \textbf{75,000 particles at 60+ FPS}, with physics in compute shaders.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Automatic License Plate Recognition} — \textit{team of 2} \tech{C++, Python, OpenCV}
+\gap
+\project{Automatic License Plate Recognition}{team of 2}{C++, Python, OpenCV}
 \begin{itemize}
   \item Built the full pipeline (preprocessing, candidate extraction, HOG features, Random Forest): \textbf{86\% precision}.
-  \item Benchmarked Python and C++ implementations; ran the project through GitLab issues, MRs and CI.
+  \item Benchmarked the Python and C++ implementations; ran the project through GitLab issues, MRs and CI.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Lung Function Prediction from CT Scans} — \textit{team of 4} \tech{Python, XGBoost, React, Docker}
+\gap
+\project{Lung Function Prediction from CT Scans}{team of 4}{Python, XGBoost, React, Docker}
 \begin{itemize}
   \item Predicted forced vital capacity from lung segmentation using classical ML only (XGBoost, no CNNs allowed).
   \item Delivered it as a web app with a React front-end, containerized with Docker and a GitLab CI pipeline.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Systems Programming} — \textit{EPITA projects} \tech{C, Linux}
+\gap
+\project{Systems Programming}{EPITA projects}{C, Linux}
 \begin{itemize}
   \item Implemented a memory allocator (malloc), a POSIX shell (42sh), a BitTorrent client and a \texttt{find} clone.
 \end{itemize}
@@ -110,12 +116,11 @@
 
 \entry{Studiocanal}{Sept. 2025 -- Jan. 2026}{Full-Stack \& DevOps Developer Intern}{Java, Spring Boot, Angular, AWS}
 \begin{itemize}
-  \item Developed new features for an internal rights, contracts and film catalogue platform used by \textbf{100+ employees}.
+  \item Developed new features for an internal rights, contracts and film catalogue platform used by \mbox{\textbf{100+ employees}}.
   \item Set up the GitLab CI/CD pipeline for a new module; deployed across three environments (DEV, UAT, PROD).
   \item Worked on the AWS infrastructure (EC2, RDS, IAM) within an Agile team.
 \end{itemize}
-
-\vspace{3pt}
+\gap
 \entry{Hitachi Solutions France}{June -- July 2022}{IT Consultant Intern}{Python, Django}
 \begin{itemize}
   \item Prototyped a supplier, product and contract management application for Sonepar, following Agile SAFe.
@@ -124,13 +129,14 @@
 %% ══ SKILLS ═══════════════════════════════════════════════════════════════════
 \section{Skills}
 
-\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.2em}}X@{}}
+{\small\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.5em}}>{\RaggedRight\arraybackslash}X@{}}
   \textbf{Computer Vision \& AI} & Image processing, deep learning, PyTorch, OpenCV, YOLO, Florence-2, XGBoost \\
   \textbf{GPU \& Graphics}       & CUDA, Nsight, OpenGL, GLSL, compute shaders \\
   \textbf{Programming}           & C, C++, Python, Java, TypeScript, SQL \\
   \textbf{Frameworks}            & Spring Boot, Quarkus, FastAPI, Django, Angular, React \\
   \textbf{Tools}                 & Linux, Git, Docker, GitLab CI, AWS, PostgreSQL, MongoDB, SQLite \\
   \textbf{Languages}             & French (native), English (professional, TOEIC 845)
-\end{tabularx}
+\end{tabularx}}
 
 \end{document}

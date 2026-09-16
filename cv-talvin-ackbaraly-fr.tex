@@ -8,48 +8,60 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage[top=1.3cm, bottom=1.3cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage[top=1.2cm, bottom=1cm, left=1.8cm, right=1.8cm]{geometry}
 \usepackage{XCharter}
-\usepackage{microtype}
+\usepackage[letterspace=80]{microtype}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{tabularx}
+\usepackage{ragged2e}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={CV — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
 
+\definecolor{soft}{gray}{0.35}   % secondary information (context, tech)
+\definecolor{hair}{gray}{0.6}    % section rules
+
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
+\linespread{1.0}
+\RaggedRight
 
-%% Section: small caps, thin rule underneath
-\titleformat{\section}{\large\scshape}{}{0pt}{}[\vspace{-6pt}\rule{\textwidth}{0.4pt}]
+%% Section: letter-spaced small caps over a hairline
+\titleformat{\section}
+  {\large\scshape\lsstyle}{}{0pt}{}
+  [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
 \titlespacing*{\section}{0pt}{10pt}{5pt}
 
 \frenchsetup{StandardItemLabels=true}
-\setlist[itemize]{leftmargin=1.1em, label={\textbullet}, topsep=2pt, itemsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, label={\textbullet}, topsep=2pt, itemsep=1.5pt, parsep=0pt}
 
 %% \entry{Title}{Date}{Subtitle}{Right-hand detail}
 \newcommand{\entry}[4]{%
   \textbf{#1} \hfill #2\\
-  \textit{#3} \hfill \textit{#4}\par
+  \textit{#3} \hfill {\small\color{soft}\textit{#4}}\par
 }
-\newcommand{\tech}[1]{\hfill{\small\textit{#1}}}
+%% \project{Name}{Context}{Tech}
+\newcommand{\project}[3]{%
+  \textbf{#1}{\color{soft}\enspace—\enspace\textit{#2}} \hfill {\small\color{soft}\textit{#3}}\par
+}
+\newcommand{\gap}{\par\vspace{4pt}}
 
 \begin{document}
 
 %% ══ EN-TÊTE ══════════════════════════════════════════════════════════════════
 \begin{center}
-  {\fontsize{24}{28}\selectfont\scshape Talvin Ackbaraly}\\[5pt]
-  Élève ingénieur — Vision par ordinateur \& calcul GPU\\[3pt]
-  \small
+  {\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
+  Élève ingénieur — Vision par ordinateur \& calcul GPU\\[5pt]
+  {\small
   \href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
   \href{tel:+33769389008}{07 69 38 90 08} \enspace·\enspace
-  \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\
+  \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
-  \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}\\[3pt]
-  \textit{Recherche un stage de fin d'études de 6 mois à partir de février 2027}
+  \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}\\[5pt]
+  \textit{Recherche un stage de fin d'études de 6 mois à partir de février 2027}}
 \end{center}
 
 %% ══ FORMATION ════════════════════════════════════════════════════════════════
@@ -57,51 +69,45 @@
 
 \entry{EPITA — École d'ingénieurs en informatique}{sept. 2022 -- 2027}
       {Diplôme d'ingénieur, majeure Image}{Paris, France}
-{\small Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
-
-\vspace{4pt}
+{\small\color{soft}Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
+\gap
 \entry{Université du Québec à Chicoutimi (UQAC)}{janv. -- mai 2024}
       {Semestre d'échange académique}{Québec, Canada}
 
 %% ══ PROJETS ══════════════════════════════════════════════════════════════════
 \section{Projets}
 
-\textbf{Détection d'illustrations pour la BnF} — \textit{projet de fin d'études, équipe de 4, en cours} \tech{PyTorch, YOLO26, Florence-2}
+\project{Détection d'illustrations pour la BnF}{projet de fin d'études, équipe de 4, en cours}{PyTorch, YOLO26, Florence-2}
 \begin{itemize}
   \item Conception d'une chaîne de \textbf{détection et de classification d'illustrations} dans des documents numérisés.
   \item Entraînement et benchmark de modèles de détection et de classification (YOLO26, Florence-2) sur \textbf{30\,Go}.
   \item Définition des métriques d'évaluation avec le client et présentation des résultats en points hebdomadaires.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Détection de mouvement temps réel sur GPU} — \textit{équipe de 4} \tech{CUDA, C++, Nsight}
+\gap
+\project{Détection de mouvement temps réel sur GPU}{équipe de 4}{CUDA, C++, Nsight}
 \begin{itemize}
   \item Portage CPU $\rightarrow$ GPU d'une chaîne de détection de mouvement vidéo : \textbf{accélération $\times$24}.
   \item Profilage et suppression des goulots d'étranglement avec NVIDIA Nsight.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Simulation de fluides temps réel} — \textit{équipe de 2} \tech{C++, OpenGL, GLSL}
+\gap
+\project{Simulation de fluides temps réel}{équipe de 2}{C++, OpenGL, GLSL}
 \begin{itemize}
   \item Moteur SPH simulant \textbf{75\,000 particules à plus de 60 FPS}, avec calcul physique en compute shaders.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Reconnaissance automatique de plaques d'immatriculation} — \textit{équipe de 2} \tech{C++, Python, OpenCV}
+\gap
+\project{Reconnaissance automatique de plaques d'immatriculation}{équipe de 2}{C++, Python, OpenCV}
 \begin{itemize}
   \item Chaîne complète (prétraitement, extraction de candidats, HOG, Random Forest) : \textbf{précision de 86\,\%}.
   \item Benchmark des implémentations Python et C++ ; gestion via GitLab (issues, MR, CI).
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Prédiction de la fonction pulmonaire à partir de scanners CT} — \textit{équipe de 4} \tech{Python, XGBoost, React, Docker}
+\gap
+\project{Prédiction de la fonction pulmonaire à partir de scanners CT}{équipe de 4}{Python, XGBoost, React, Docker}
 \begin{itemize}
   \item Prédiction de la capacité vitale forcée par segmentation pulmonaire et ML classique (XGBoost, sans CNN).
   \item Intégration dans une application web (front-end React), conteneurisée avec Docker et un pipeline GitLab CI.
 \end{itemize}
-
-\vspace{3pt}
-\textbf{Programmation système} — \textit{projets EPITA} \tech{C, Linux}
+\gap
+\project{Programmation système}{projets EPITA}{C, Linux}
 \begin{itemize}
   \item Allocateur mémoire (malloc), shell POSIX (42sh), client BitTorrent et clone de \texttt{find}.
 \end{itemize}
@@ -115,8 +121,7 @@
   \item Mise en place du pipeline CI/CD GitLab d'un nouveau module ; déploiements en DEV, UAT et PROD.
   \item Intervention sur l'infrastructure AWS (EC2, RDS, IAM) au sein d'une équipe Agile.
 \end{itemize}
-
-\vspace{3pt}
+\gap
 \entry{Hitachi Solutions France}{juin -- juil. 2022}{Stage — Consultant informatique}{Python, Django}
 \begin{itemize}
   \item Prototype d'application de gestion fournisseurs, produits et contrats pour Sonepar, en méthode Agile SAFe.
@@ -125,13 +130,14 @@
 %% ══ COMPÉTENCES ══════════════════════════════════════════════════════════════
 \section{Compétences}
 
-\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.2em}}X@{}}
-  \textbf{Vision par ordinateur \& IA} & Traitement d'images, deep learning, PyTorch, OpenCV, YOLO, XGBoost \\
+{\small\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.5em}}>{\RaggedRight\arraybackslash}X@{}}
+  \textbf{Vision par ordinateur \& IA} & Traitement d'images, deep learning, PyTorch, OpenCV, YOLO, Florence-2, XGBoost \\
   \textbf{GPU \& graphisme}            & CUDA, Nsight, OpenGL, GLSL, compute shaders \\
   \textbf{Programmation}               & C, C++, Python, Java, TypeScript, SQL \\
   \textbf{Frameworks}                  & Spring Boot, Quarkus, FastAPI, Django, Angular, React \\
   \textbf{Outils}                      & Linux, Git, Docker, GitLab CI, AWS, PostgreSQL, MongoDB, SQLite \\
   \textbf{Langues}                     & Français (langue maternelle), anglais (professionnel, TOEIC 845)
-\end{tabularx}
+\end{tabularx}}
 
 \end{document}
