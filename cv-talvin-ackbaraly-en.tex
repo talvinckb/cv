@@ -1,6 +1,6 @@
 %% ─────────────────────────────────────────────────────────────────────────────
 %% CV — Talvin Ackbaraly (English Version)
-%% Serif (XCharter), black text, thin rules, bullets, no colours/icons
+%% Serif (XCharter), one restrained accent colour, thin rules, bullets, no icons
 %% Compile: latexmk -pdf cv-talvin-ackbaraly-en.tex
 %% ─────────────────────────────────────────────────────────────────────────────
 \documentclass[10.5pt, a4paper]{extarticle}
@@ -16,12 +16,19 @@
 \usepackage{tabularx}
 \usepackage{ragged2e}
 \usepackage{xcolor}
+\usepackage[scaled=0.94,noupquote]{inconsolata}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
 
-\definecolor{soft}{gray}{0.35}   % secondary information (context, tech)
-\definecolor{hair}{gray}{0.6}    % section rules
+%% ── Colour system: one accent, everything else neutral ───────────────────────
+\definecolor{accent}{HTML}{1F3D5C}  % THE accent: name, sections, links, bullets
+\definecolor{ink}{HTML}{1A1A1A}     % body text (warm near-black, not pure 000)
+\definecolor{soft}{HTML}{6E6E6E}    % secondary information (context, tech)
+\definecolor{hair}{HTML}{C9C9C9}    % section rules
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+\AtBeginDocument{\color{ink}}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
@@ -31,11 +38,11 @@
 
 %% Section: letter-spaced small caps over a hairline
 \titleformat{\section}
-  {\large\scshape\lsstyle}{}{0pt}{}
+  {\large\scshape\lsstyle\color{accent}}{}{0pt}{}
   [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
 \titlespacing*{\section}{0pt}{10pt}{5pt}
 
-\setlist[itemize]{leftmargin=1.1em, label={\textbullet}, topsep=2pt, itemsep=1.5pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, label={\color{accent!55}\textbullet}, topsep=2pt, itemsep=1.5pt, parsep=0pt}
 
 %% \entry{Title}{Date}{Subtitle}{Right-hand detail}
 \newcommand{\entry}[4]{%
@@ -52,7 +59,7 @@
 
 %% ══ HEADER ═══════════════════════════════════════════════════════════════════
 \begin{center}
-  {\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
+  {\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
   Engineering student — Computer Vision \& GPU Computing\\[5pt]
   {\small
   \href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
@@ -131,12 +138,12 @@
 
 {\small\renewcommand{\arraystretch}{1.12}
 \begin{tabularx}{\textwidth}{@{}l@{\hspace{1.5em}}>{\RaggedRight\arraybackslash}X@{}}
-  \textbf{Computer Vision \& AI} & Image processing, deep learning, PyTorch, OpenCV, YOLO, Florence-2, XGBoost \\
-  \textbf{GPU \& Graphics}       & CUDA, Nsight, OpenGL, GLSL, compute shaders \\
-  \textbf{Programming}           & C, C++, Python, Java, TypeScript, SQL \\
-  \textbf{Frameworks}            & Spring Boot, Quarkus, FastAPI, Django, Angular, React \\
-  \textbf{Tools}                 & Linux, Git, Docker, GitLab CI, AWS, PostgreSQL, MongoDB, SQLite \\
-  \textbf{Languages}             & French (native), English (professional, TOEIC 845)
+  \textbf{\color{accent}Computer Vision \& AI} & Image processing, deep learning, PyTorch, OpenCV, YOLO, Florence-2, XGBoost \\
+  \textbf{\color{accent}GPU \& Graphics}       & CUDA, Nsight, OpenGL, GLSL, compute shaders \\
+  \textbf{\color{accent}Programming}           & C, C++, Python, Java, TypeScript, SQL \\
+  \textbf{\color{accent}Frameworks}            & Spring Boot, Quarkus, FastAPI, Django, Angular, React \\
+  \textbf{\color{accent}Tools}                 & Linux, Git, Docker, GitLab CI, AWS, PostgreSQL, MongoDB, SQLite \\
+  \textbf{\color{accent}Languages}             & French (native), English (professional, TOEIC 845)
 \end{tabularx}}
 
 \end{document}
