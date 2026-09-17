@@ -3,7 +3,7 @@
 %% Serif (XCharter), one restrained accent colour, thin rules, bullets, no icons
 %% Compile: latexmk -pdf cv-talvin-ackbaraly-fr.tex
 %% ─────────────────────────────────────────────────────────────────────────────
-\documentclass[10pt, a4paper]{extarticle}
+\documentclass[10.5pt, a4paper]{extarticle}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -18,6 +18,7 @@
 \usepackage{xcolor}
 \usepackage[scaled=0.94,noupquote]{inconsolata}
 \usepackage{tikz}
+\usepackage{varwidth}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={CV — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
@@ -46,7 +47,6 @@
 \titlespacing*{\section}{0pt}{12pt}{5pt}
 
 \frenchsetup{StandardItemLabels=true}
-\setlist[itemize]{leftmargin=1.1em, label={\color{accent!70}\textbullet}, topsep=3pt, itemsep=2.5pt, parsep=0pt}
 
 %% Tag pill: \chip{CUDA}
 \newcommand{\chip}[1]{%
@@ -64,9 +64,59 @@
 }
 \newcommand{\gap}{\par\vspace{6pt}}
 
+
+%% NB : en tête de cellule « p », {\color{...}} décale d'une ligne — toujours \textcolor.
+
+%% ── 1. Formation : entrées empilées, sans tags ───────────────────────────────
+\newcommand{\edu}[4]{%
+  \textbf{#1}\hfill #2\par\vspace{1.5pt}
+  \textcolor{accent}{\textit{#3}}\par\vspace{1.5pt}
+  {\small\color{soft}#4}\par
+}
+
+%% ── 2. Projets : grille code / prose / tags ──────────────────────────────────
+%% Chaque ligne calcule sa propre largeur de colonne de tags : on mesure la
+%% largeur naturelle des pastilles, on la plafonne, et la prose prend le reste.
+\newlength{\projlabelw}\setlength{\projlabelw}{2.85cm}
+\newlength{\projgapa}\setlength{\projgapa}{0.25cm}
+\newlength{\projgapb}\setlength{\projgapb}{0.4cm}
+\newlength{\projmaxtag}\setlength{\projmaxtag}{3.35cm}
+\newlength{\projtagw}\newlength{\projprosew}
+\newsavebox{\projtagbox}
+%% #1 domaine, #2 contexte (équipe), #3 prose, #4 pastilles.
+%% varwidth compose les pastilles jusqu'à \projmaxtag mais rétrécit à la largeur
+%% réellement occupée : chaque ligne garde donc sa propre gouttière.
+\newcommand{\proj}[4]{%
+  \sbox\projtagbox{\begin{varwidth}[t]{\projmaxtag}\raggedleft #4\end{varwidth}}%
+  \setlength{\projtagw}{\wd\projtagbox}%
+  \setlength{\projprosew}{\dimexpr\textwidth-\projlabelw-\projgapa-\projgapb-\projtagw\relax}%
+  \noindent
+  \parbox[t]{\projlabelw}{\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+    \textcolor{accent}{\textbf{#1}}\\[1.5pt]{\small\color{soft}#2}}%
+  \hspace{\projgapa}%
+  \parbox[t]{\projprosew}{\RaggedRight #3}%
+  \hspace{\projgapb}%
+  \usebox\projtagbox
+  \par
+}
+\newcommand{\projgap}{\vspace{9pt}}
+
+%% ── 3. Expérience : rôle d'abord, prose pleine largeur ───────────────────────
+\newcommand{\job}[5]{%
+  \textbf{#1}\hfill #2\par\vspace{1.5pt}
+  \textcolor{accent}{#3}\hfill {\small\color{soft}#4}\par\vspace{4pt}
+  #5\par
+}
+
+%% ── 4. Compétences : libellé + pastilles ─────────────────────────────────────
+\newlength{\skilllab}\setlength{\skilllab}{4.95cm}
+\newcommand{\skillrow}[2]{%
+  \noindent\parbox[t]{\skilllab}{\textbf{#1}}%
+  \parbox[t]{\dimexpr\textwidth-\skilllab\relax}{\RaggedRight #2}\par\vspace{5pt}
+}
+
 \begin{document}
 
-%% ══ EN-TÊTE ══════════════════════════════════════════════════════════════════
 \begin{center}
   {\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
   Élève ingénieur — Vision par ordinateur \& calcul GPU\\[5pt]
@@ -79,75 +129,57 @@
   \textit{Recherche un stage de fin d'études de 6 mois à partir de février 2027}}
 \end{center}
 
-%% ══ FORMATION ════════════════════════════════════════════════════════════════
 \section{Formation}
 
-\entry{EPITA — École d'ingénieurs en informatique}{sept. 2022 -- 2027}
-      {Diplôme d'ingénieur, majeure Image}{\small\color{soft}\textit{Paris, France}}
-{\small\color{soft}Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
-\gap
-\entry{Université du Québec à Chicoutimi (UQAC)}{janv. -- mai 2024}
-      {Semestre d'échange académique}{\small\color{soft}\textit{Québec, Canada}}
+\edu{EPITA — École d'ingénieurs en informatique}{sept. 2022 -- 2027}
+    {Diplôme d'ingénieur, majeure Image — Paris}
+    {Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
+\vspace{7pt}
+\edu{Université du Québec à Chicoutimi (UQAC)}{janv. -- mai 2024}
+    {Semestre d'échange académique — Québec, Canada}{}
 
-%% ══ PROJETS ══════════════════════════════════════════════════════════════════
 \section{Projets}
 
-\project{Détection d'illustrations pour la BnF}{projet de fin d'études, équipe de 4, en cours}{\chip{PyTorch}\chip{YOLO26}\chip{Florence-2}}
-\begin{itemize}
-  \item Conception d'une chaîne de \textbf{détection et de classification d'illustrations} dans des documents numérisés.
-  \item Entraînement et benchmark de modèles de détection et de classification (YOLO26, Florence-2) sur \textbf{30\,Go}.
-  \item Définition des métriques d'évaluation avec le client et présentation des résultats en points hebdomadaires.
-\end{itemize}
-\gap
-\project{Détection de mouvement temps réel sur GPU}{équipe de 4}{\chip{CUDA}\chip{C++}\chip{Nsight}}
-\begin{itemize}
-  \item Portage CPU $\rightarrow$ GPU d'une chaîne de détection de mouvement vidéo : \textbf{accélération $\times$24}.
-  \item Profilage et suppression des goulots d'étranglement avec NVIDIA Nsight.
-\end{itemize}
-\gap
-\project{Simulation de fluides temps réel}{équipe de 2}{\chip{C++}\chip{OpenGL}\chip{GLSL}}
-\begin{itemize}
-  \item Moteur SPH simulant \textbf{75\,000 particules à plus de 60 FPS}, avec calcul physique en compute shaders.
-\end{itemize}
-\gap
-\project{Reconnaissance automatique de plaques d'immatriculation}{équipe de 2}{\chip{C++}\chip{Python}\chip{OpenCV}}
-\begin{itemize}
-  \item Chaîne complète (prétraitement, extraction de candidats, HOG, Random Forest) : \textbf{précision de 86\,\%}.
-  \item Benchmark des implémentations Python et C++ ; gestion via GitLab (issues, MR, CI).
-\end{itemize}
-\gap
-\project{Prédiction de la fonction pulmonaire à partir de scanners CT}{équipe de 4}{\chip{Python}\chip{XGBoost}\chip{React}\chip{Docker}}
-\begin{itemize}
-  \item Prédiction de la capacité vitale forcée par segmentation pulmonaire et ML classique (XGBoost, sans CNN).
-  \item Intégration dans une application web (front-end React), conteneurisée avec Docker et un pipeline GitLab CI.
-\end{itemize}
+\proj{Deep learning}{équipe de 4}{\textbf{Projet de fin d'études} avec la Bibliothèque nationale de France :
+  détection et classification d'illustrations dans des documents numérisés. Entraînement et
+  benchmark de modèles sur \textbf{30\,Go}, métriques définies avec le client.}
+  {\chip{PyTorch}\chip{YOLO26}\chip{Florence-2}}
+\projgap
+\proj{Calcul GPU}{équipe de 4}{Détection de mouvement vidéo temps réel. Portage CPU $\rightarrow$ GPU avec une
+  \textbf{accélération de $\times$24}, analyse des goulots d'étranglement via Nsight.}
+  {\chip{CUDA}\chip{C++}\chip{Nsight}}
+\projgap
+\proj{Temps réel}{équipe de 2}{Moteur de simulation de fluides temps réel basé sur SPH.
+  \textbf{75\,000 particules à plus de 60 FPS}, physique en compute shaders.}
+  {\chip{C++}\chip{OpenGL}\chip{GLSL}}
+\projgap
+\proj{Vision}{équipe de 2}{Reconnaissance automatique de plaques d'immatriculation. Détection classique
+  (filtres, morphologie, HOG) et Random Forest : \textbf{86\,\% de précision}. Benchmark
+  Python vs C++, workflow GitLab complet.}
+  {\chip{OpenCV}\chip{C++}\chip{Python}}
+\projgap
+\proj{ML médical}{équipe de 4}{Prédiction de la capacité vitale forcée à partir de scanners CT. Segmentation
+  pulmonaire et XGBoost, livré en application web React conteneurisée.}
+  {\chip{XGBoost}\chip{React}\chip{Docker}}
 
-%% ══ EXPÉRIENCE ═══════════════════════════════════════════════════════════════
 \section{Expérience professionnelle}
 
-\entry{Studiocanal}{sept. 2025 -- janv. 2026}{Stage — Développeur Full-Stack \& DevOps}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
-\begin{itemize}
-  \item Nouvelles fonctionnalités pour une plateforme interne (droits, contrats, catalogue) utilisée par \textbf{100+ collaborateurs}.
-  \item Mise en place du pipeline CI/CD GitLab d'un nouveau module ; déploiements en DEV, UAT et PROD.
-  \item Intervention sur l'infrastructure AWS (EC2, RDS, IAM) au sein d'une équipe Agile.
-\end{itemize}
-\gap
-\entry{Hitachi Solutions France}{juin -- juil. 2022}{Stage — Consultant informatique}{\chip{Python}\chip{Django}}
-\begin{itemize}
-  \item Prototype d'application de gestion fournisseurs, produits et contrats pour Sonepar, en méthode Agile SAFe.
-\end{itemize}
+\job{Développeur Full-Stack \& DevOps \textnormal{\color{soft}(stage)}}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
+    {Studiocanal}{sept. 2025 -- janv. 2026}
+    {Développement de fonctionnalités full-stack pour une plateforme interne de gestion des droits,
+     contrats et catalogue, utilisée par \textbf{100+ collaborateurs}. Mise en place du pipeline CI/CD
+     GitLab d'un nouveau module et intervention sur l'infrastructure AWS (EC2, RDS, IAM), en équipe Agile.}
+\vspace{8pt}
+\job{Consultant en informatique \textnormal{\color{soft}(stage)}}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
+    {Hitachi Solutions France}{juin -- juil. 2022}
+    {Prototype d'application de gestion fournisseurs, produits et contrats pour le client Sonepar.}
 
-%% ══ COMPÉTENCES ══════════════════════════════════════════════════════════════
 \section{Compétences}
 
-{\small\renewcommand{\arraystretch}{1.12}
-\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.5em}}>{\RaggedRight\arraybackslash}X@{}}
-  \textbf{\color{accent}Vision par ordinateur \& IA} & Traitement d'images, deep learning, PyTorch, OpenCV, YOLO, Florence-2, XGBoost \\
-  \textbf{\color{accent}GPU \& graphisme}            & CUDA, Nsight, OpenGL, GLSL, compute shaders \\
-  \textbf{\color{accent}Programmation}               & C, C++, Python, Java, TypeScript, SQL \\
-  \textbf{\color{accent}Frameworks}                  & Spring Boot, Quarkus, FastAPI, Django, Angular, React \\
-  \textbf{\color{accent}Outils}                      & Linux, Git, Docker, GitLab CI, AWS, PostgreSQL, MongoDB, SQLite \\
-  \textbf{\color{accent}Langues}                     & Français (langue maternelle), anglais (professionnel, TOEIC 845)
-\end{tabularx}}
+\skillrow{Vision par ordinateur \& IA}{\chip{Traitement d'images}\chip{Deep learning}\chip{PyTorch}\chip{OpenCV}\chip{YOLO}\chip{XGBoost}}
+\skillrow{Calcul GPU \& graphisme}{\chip{CUDA}\chip{Nsight}\chip{OpenGL}\chip{GLSL}\chip{Compute shaders}}
+\skillrow{Programmation}{\chip{C}\chip{C++}\chip{Python}\chip{Java}\chip{TypeScript}\chip{SQL}}
+\skillrow{Développement \& DevOps}{\chip{Spring Boot}\chip{Angular}\chip{React}\chip{Docker}\chip{GitLab CI}\chip{AWS}\chip{PostgreSQL}}
+\skillrow{Langues}{Français (langue maternelle), anglais (professionnel, TOEIC 845)}
 
 \end{document}

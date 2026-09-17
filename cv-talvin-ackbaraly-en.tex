@@ -3,7 +3,7 @@
 %% Serif (XCharter), one restrained accent colour, thin rules, bullets, no icons
 %% Compile: latexmk -pdf cv-talvin-ackbaraly-en.tex
 %% ─────────────────────────────────────────────────────────────────────────────
-\documentclass[10pt, a4paper]{extarticle}
+\documentclass[10.5pt, a4paper]{extarticle}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -18,6 +18,7 @@
 \usepackage{xcolor}
 \usepackage[scaled=0.94,noupquote]{inconsolata}
 \usepackage{tikz}
+\usepackage{varwidth}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
@@ -45,7 +46,6 @@
   [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
 \titlespacing*{\section}{0pt}{12pt}{5pt}
 
-\setlist[itemize]{leftmargin=1.1em, label={\color{accent!70}\textbullet}, topsep=3pt, itemsep=2.5pt, parsep=0pt}
 
 %% Tag pill: \chip{CUDA}
 \newcommand{\chip}[1]{%
@@ -63,9 +63,59 @@
 }
 \newcommand{\gap}{\par\vspace{6pt}}
 
+
+%% NB: at the head of a `p' cell, {\color{...}} shifts content down one line — always \textcolor.
+
+%% ── 1. Education: stacked entries, no tags ───────────────────────────────
+\newcommand{\edu}[4]{%
+  \textbf{#1}\hfill #2\par\vspace{1.5pt}
+  \textcolor{accent}{\textit{#3}}\par\vspace{1.5pt}
+  {\small\color{soft}#4}\par
+}
+
+%% ── 2. Projects: domain / prose / tags grid ──────────────────────────────────
+%% Chaque ligne calcule sa propre largeur de colonne de tags : on mesure la
+%% largeur naturelle des pastilles, on la plafonne, et la prose prend le reste.
+\newlength{\projlabelw}\setlength{\projlabelw}{2.85cm}
+\newlength{\projgapa}\setlength{\projgapa}{0.25cm}
+\newlength{\projgapb}\setlength{\projgapb}{0.4cm}
+\newlength{\projmaxtag}\setlength{\projmaxtag}{3.35cm}
+\newlength{\projtagw}\newlength{\projprosew}
+\newsavebox{\projtagbox}
+%% #1 domaine, #2 contexte (équipe), #3 prose, #4 pastilles.
+%% varwidth compose les pastilles jusqu'à \projmaxtag mais rétrécit à la largeur
+%% réellement occupée : chaque ligne garde donc sa propre gouttière.
+\newcommand{\proj}[4]{%
+  \sbox\projtagbox{\begin{varwidth}[t]{\projmaxtag}\raggedleft #4\end{varwidth}}%
+  \setlength{\projtagw}{\wd\projtagbox}%
+  \setlength{\projprosew}{\dimexpr\textwidth-\projlabelw-\projgapa-\projgapb-\projtagw\relax}%
+  \noindent
+  \parbox[t]{\projlabelw}{\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+    \textcolor{accent}{\textbf{#1}}\\[1.5pt]{\small\color{soft}#2}}%
+  \hspace{\projgapa}%
+  \parbox[t]{\projprosew}{\RaggedRight #3}%
+  \hspace{\projgapb}%
+  \usebox\projtagbox
+  \par
+}
+\newcommand{\projgap}{\vspace{9pt}}
+
+%% ── 3. Experience: role first, full-width prose ───────────────────────
+\newcommand{\job}[5]{%
+  \textbf{#1}\hfill #2\par\vspace{1.5pt}
+  \textcolor{accent}{#3}\hfill {\small\color{soft}#4}\par\vspace{4pt}
+  #5\par
+}
+
+%% ── 4. Skills: label + pills ─────────────────────────────────────
+\newlength{\skilllab}\setlength{\skilllab}{4.95cm}
+\newcommand{\skillrow}[2]{%
+  \noindent\parbox[t]{\skilllab}{\textbf{#1}}%
+  \parbox[t]{\dimexpr\textwidth-\skilllab\relax}{\RaggedRight #2}\par\vspace{5pt}
+}
+
 \begin{document}
 
-%% ══ HEADER ═══════════════════════════════════════════════════════════════════
 \begin{center}
   {\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
   Engineering student — Computer Vision \& GPU Computing\\[5pt]
@@ -78,75 +128,57 @@
   \textit{Seeking a 6-month final-year internship starting February 2027}}
 \end{center}
 
-%% ══ EDUCATION ════════════════════════════════════════════════════════════════
 \section{Education}
 
-\entry{EPITA — Engineering School of Computer Science}{Sept. 2022 -- 2027}
-      {Master of Engineering, Image specialization}{\small\color{soft}\textit{Paris, France}}
-{\small\color{soft}Image processing \& synthesis, computer vision, deep learning, GPU computing.}
-\gap
-\entry{Université du Québec à Chicoutimi (UQAC)}{Jan. -- May 2024}
-      {Academic exchange semester}{\small\color{soft}\textit{Québec, Canada}}
+\edu{EPITA — Engineering School of Computer Science}{Sept. 2022 -- 2027}
+    {Master of Engineering, Image specialization — Paris}
+    {Image processing \& synthesis, computer vision, deep learning, GPU computing.}
+\vspace{7pt}
+\edu{Université du Québec à Chicoutimi (UQAC)}{Jan. -- May 2024}
+    {Academic exchange semester — Québec, Canada}{}
 
-%% ══ PROJECTS ═════════════════════════════════════════════════════════════════
 \section{Projects}
 
-\project{Illustration Detection for the BnF}{final-year project, team of 4, ongoing}{\chip{PyTorch}\chip{YOLO26}\chip{Florence-2}}
-\begin{itemize}
-  \item Building a pipeline to \textbf{detect and classify illustrations} in the digitized collections of the French National Library.
-  \item Training and benchmarking detection and classification models (YOLO26, Florence-2) on a \textbf{30\,GB dataset}.
-  \item Defined the evaluation metrics with the client and present results in weekly meetings.
-\end{itemize}
-\gap
-\project{Real-Time Motion Detection on GPU}{team of 4}{\chip{CUDA}\chip{C++}\chip{Nsight}}
-\begin{itemize}
-  \item Ported a video motion-detection pipeline from CPU to GPU, achieving a \textbf{24$\times$ speedup}.
-  \item Profiled and removed bottlenecks with NVIDIA Nsight.
-\end{itemize}
-\gap
-\project{Real-Time Fluid Simulation}{team of 2}{\chip{C++}\chip{OpenGL}\chip{GLSL}}
-\begin{itemize}
-  \item Built an SPH fluid engine simulating \textbf{75,000 particles at 60+ FPS}, with physics in compute shaders.
-\end{itemize}
-\gap
-\project{Automatic License Plate Recognition}{team of 2}{\chip{C++}\chip{Python}\chip{OpenCV}}
-\begin{itemize}
-  \item Built the full pipeline (preprocessing, candidate extraction, HOG features, Random Forest): \textbf{86\% precision}.
-  \item Benchmarked the Python and C++ implementations; ran the project through GitLab issues, MRs and CI.
-\end{itemize}
-\gap
-\project{Lung Function Prediction from CT Scans}{team of 4}{\chip{Python}\chip{XGBoost}\chip{React}\chip{Docker}}
-\begin{itemize}
-  \item Predicted forced vital capacity from lung segmentation using classical ML only (XGBoost, no CNNs allowed).
-  \item Delivered it as a web app with a React front-end, containerized with Docker and a GitLab CI pipeline.
-\end{itemize}
+\proj{Deep learning}{team of 4}{\textbf{Final-year project} with the National Library of France: detecting and
+  classifying illustrations in digitized documents. Training and benchmarking models on
+  \textbf{30\,GB}, evaluation metrics defined with the client.}
+  {\chip{PyTorch}\chip{YOLO26}\chip{Florence-2}}
+\projgap
+\proj{GPU computing}{team of 4}{Real-time video motion detection. Ported CPU $\rightarrow$ GPU for a
+  \textbf{$\times$24 speedup}, bottleneck analysis with Nsight.}
+  {\chip{CUDA}\chip{C++}\chip{Nsight}}
+\projgap
+\proj{Real-time}{team of 2}{Real-time SPH-based fluid simulation engine.
+  \textbf{75,000 particles at 60+ FPS}, physics in compute shaders.}
+  {\chip{C++}\chip{OpenGL}\chip{GLSL}}
+\projgap
+\proj{Vision}{team of 2}{Automatic license plate recognition. Classical detection
+  (filters, morphology, HOG) and Random Forest: \textbf{86\% precision}. Python vs C++
+  benchmark, full GitLab workflow.}
+  {\chip{OpenCV}\chip{C++}\chip{Python}}
+\projgap
+\proj{Medical ML}{team of 4}{Forced vital capacity prediction from CT scans. Lung segmentation
+  and XGBoost, delivered as a containerized React web app.}
+  {\chip{XGBoost}\chip{React}\chip{Docker}}
 
-%% ══ EXPERIENCE ═══════════════════════════════════════════════════════════════
 \section{Experience}
 
-\entry{Studiocanal}{Sept. 2025 -- Jan. 2026}{Full-Stack \& DevOps Developer Intern}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
-\begin{itemize}
-  \item Developed new features for an internal rights, contracts and film catalogue platform used by \mbox{\textbf{100+ employees}}.
-  \item Set up the GitLab CI/CD pipeline for a new module; deployed across three environments (DEV, UAT, PROD).
-  \item Worked on the AWS infrastructure (EC2, RDS, IAM) within an Agile team.
-\end{itemize}
-\gap
-\entry{Hitachi Solutions France}{June -- July 2022}{IT Consultant Intern}{\chip{Python}\chip{Django}}
-\begin{itemize}
-  \item Prototyped a supplier, product and contract management application for Sonepar, following Agile SAFe.
-\end{itemize}
+\job{Full-Stack \& DevOps Developer \textnormal{\color{soft}(internship)}}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
+    {Studiocanal}{Sept. 2025 -- Jan. 2026}
+    {Built full-stack features for an internal rights, contracts and catalogue platform used by
+     \textbf{100+ employees}. Set up the GitLab CI/CD pipeline for a new module and worked on the
+     AWS infrastructure (EC2, RDS, IAM), within an Agile team.}
+\vspace{8pt}
+\job{IT Consultant \textnormal{\color{soft}(internship)}}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
+    {Hitachi Solutions France}{June -- July 2022}
+    {Prototyped a supplier, product and contract management application for the client Sonepar.}
 
-%% ══ SKILLS ═══════════════════════════════════════════════════════════════════
 \section{Skills}
 
-{\small\renewcommand{\arraystretch}{1.12}
-\begin{tabularx}{\textwidth}{@{}l@{\hspace{1.5em}}>{\RaggedRight\arraybackslash}X@{}}
-  \textbf{\color{accent}Computer Vision \& AI} & Image processing, deep learning, PyTorch, OpenCV, YOLO, Florence-2, XGBoost \\
-  \textbf{\color{accent}GPU \& Graphics}       & CUDA, Nsight, OpenGL, GLSL, compute shaders \\
-  \textbf{\color{accent}Programming}           & C, C++, Python, Java, TypeScript, SQL \\
-  \textbf{\color{accent}Frameworks}            & Spring Boot, Quarkus, FastAPI, Django, Angular, React \\
-  \textbf{\color{accent}Tools}                 & Linux, Git, Docker, GitLab CI, AWS, PostgreSQL, MongoDB, SQLite \\
-  \textbf{\color{accent}Languages}             & French (native), English (professional, TOEIC 845)
-\end{tabularx}}
+\skillrow{Computer Vision \& AI}{\chip{Image processing}\chip{Deep learning}\chip{PyTorch}\chip{OpenCV}\chip{YOLO}\chip{XGBoost}}
+\skillrow{GPU \& Graphics}{\chip{CUDA}\chip{Nsight}\chip{OpenGL}\chip{GLSL}\chip{Compute shaders}}
+\skillrow{Programming}{\chip{C}\chip{C++}\chip{Python}\chip{Java}\chip{TypeScript}\chip{SQL}}
+\skillrow{Development \& DevOps}{\chip{Spring Boot}\chip{Angular}\chip{React}\chip{Docker}\chip{GitLab CI}\chip{AWS}\chip{PostgreSQL}}
+\skillrow{Languages}{French (native), English (professional, TOEIC 845)}
 
 \end{document}
