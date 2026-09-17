@@ -3,7 +3,7 @@
 %% Serif (XCharter), one restrained accent colour, thin rules, bullets, no icons
 %% Compile: latexmk -pdf cv-talvin-ackbaraly-en.tex
 %% ─────────────────────────────────────────────────────────────────────────────
-\documentclass[10.5pt, a4paper]{extarticle}
+\documentclass[10pt, a4paper]{extarticle}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -17,6 +17,7 @@
 \usepackage{ragged2e}
 \usepackage{xcolor}
 \usepackage[scaled=0.94,noupquote]{inconsolata}
+\usepackage{tikz}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
@@ -26,6 +27,8 @@
 \definecolor{ink}{HTML}{1A1A1A}     % body text (warm near-black, not pure 000)
 \definecolor{soft}{HTML}{6E6E6E}    % secondary information (context, tech)
 \definecolor{hair}{HTML}{C9C9C9}    % section rules
+\definecolor{chipbg}{HTML}{EAF0F7}  % tag pill background
+\definecolor{chipfg}{HTML}{2F5B87}  % tag pill text
 
 \hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
 \AtBeginDocument{\color{ink}}
@@ -33,27 +36,32 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\linespread{1.0}
+\linespread{1.02}
 \RaggedRight
 
 %% Section: letter-spaced small caps over a hairline
 \titleformat{\section}
   {\large\scshape\lsstyle\color{accent}}{}{0pt}{}
   [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
-\titlespacing*{\section}{0pt}{10pt}{5pt}
+\titlespacing*{\section}{0pt}{12pt}{5pt}
 
-\setlist[itemize]{leftmargin=1.1em, label={\color{accent!70}\textbullet}, topsep=2pt, itemsep=1.5pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, label={\color{accent!70}\textbullet}, topsep=3pt, itemsep=2.5pt, parsep=0pt}
 
-%% \entry{Title}{Date}{Subtitle}{Right-hand detail}
+%% Tag pill: \chip{CUDA}
+\newcommand{\chip}[1]{%
+  \tikz[baseline=(c.base)]{\node[inner xsep=4.5pt, inner ysep=2pt, rounded corners=2.5pt,
+    fill=chipbg, text=chipfg, font=\footnotesize] (c) {#1};}\hspace{1pt}%
+}
+%% \entry{Title}{Date}{Subtitle}{Tags}
 \newcommand{\entry}[4]{%
   \textbf{#1} \hfill #2\\
-  \textit{#3} \hfill {\small\color{soft}\textit{#4}}\par
+  \textit{#3} \hfill {#4}\par
 }
-%% \project{Name}{Context}{Tech}
+%% \project{Name}{Context}{Tags}
 \newcommand{\project}[3]{%
-  \textbf{#1}{\color{soft}\enspace—\enspace\textit{#2}} \hfill {\small\color{soft}\textit{#3}}\par
+  \textbf{#1}{\color{soft}\enspace—\enspace\textit{#2}} \hfill {#3}\par
 }
-\newcommand{\gap}{\par\vspace{4pt}}
+\newcommand{\gap}{\par\vspace{6pt}}
 
 \begin{document}
 
@@ -74,61 +82,56 @@
 \section{Education}
 
 \entry{EPITA — Engineering School of Computer Science}{Sept. 2022 -- 2027}
-      {Master of Engineering, Image specialization}{Paris, France}
+      {Master of Engineering, Image specialization}{\small\color{soft}\textit{Paris, France}}
 {\small\color{soft}Image processing \& synthesis, computer vision, deep learning, GPU computing.}
 \gap
 \entry{Université du Québec à Chicoutimi (UQAC)}{Jan. -- May 2024}
-      {Academic exchange semester}{Québec, Canada}
+      {Academic exchange semester}{\small\color{soft}\textit{Québec, Canada}}
 
 %% ══ PROJECTS ═════════════════════════════════════════════════════════════════
 \section{Projects}
 
-\project{Illustration Detection for the BnF}{final-year project, team of 4, ongoing}{PyTorch, YOLO26, Florence-2}
+\project{Illustration Detection for the BnF}{final-year project, team of 4, ongoing}{\chip{PyTorch}\chip{YOLO26}\chip{Florence-2}}
 \begin{itemize}
   \item Building a pipeline to \textbf{detect and classify illustrations} in the digitized collections of the French National Library.
   \item Training and benchmarking detection and classification models (YOLO26, Florence-2) on a \textbf{30\,GB dataset}.
   \item Defined the evaluation metrics with the client and present results in weekly meetings.
 \end{itemize}
 \gap
-\project{Real-Time Motion Detection on GPU}{team of 4}{CUDA, C++, Nsight}
+\project{Real-Time Motion Detection on GPU}{team of 4}{\chip{CUDA}\chip{C++}\chip{Nsight}}
 \begin{itemize}
   \item Ported a video motion-detection pipeline from CPU to GPU, achieving a \textbf{24$\times$ speedup}.
   \item Profiled and removed bottlenecks with NVIDIA Nsight.
 \end{itemize}
 \gap
-\project{Real-Time Fluid Simulation}{team of 2}{C++, OpenGL, GLSL}
+\project{Real-Time Fluid Simulation}{team of 2}{\chip{C++}\chip{OpenGL}\chip{GLSL}}
 \begin{itemize}
   \item Built an SPH fluid engine simulating \textbf{75,000 particles at 60+ FPS}, with physics in compute shaders.
 \end{itemize}
 \gap
-\project{Automatic License Plate Recognition}{team of 2}{C++, Python, OpenCV}
+\project{Automatic License Plate Recognition}{team of 2}{\chip{C++}\chip{Python}\chip{OpenCV}}
 \begin{itemize}
   \item Built the full pipeline (preprocessing, candidate extraction, HOG features, Random Forest): \textbf{86\% precision}.
   \item Benchmarked the Python and C++ implementations; ran the project through GitLab issues, MRs and CI.
 \end{itemize}
 \gap
-\project{Lung Function Prediction from CT Scans}{team of 4}{Python, XGBoost, React, Docker}
+\project{Lung Function Prediction from CT Scans}{team of 4}{\chip{Python}\chip{XGBoost}\chip{React}\chip{Docker}}
 \begin{itemize}
   \item Predicted forced vital capacity from lung segmentation using classical ML only (XGBoost, no CNNs allowed).
   \item Delivered it as a web app with a React front-end, containerized with Docker and a GitLab CI pipeline.
-\end{itemize}
-\gap
-\project{Systems Programming}{EPITA projects}{C, Linux}
-\begin{itemize}
-  \item Implemented a memory allocator (malloc), a POSIX shell (42sh), a BitTorrent client and a \texttt{find} clone.
 \end{itemize}
 
 %% ══ EXPERIENCE ═══════════════════════════════════════════════════════════════
 \section{Experience}
 
-\entry{Studiocanal}{Sept. 2025 -- Jan. 2026}{Full-Stack \& DevOps Developer Intern}{Java, Spring Boot, Angular, AWS}
+\entry{Studiocanal}{Sept. 2025 -- Jan. 2026}{Full-Stack \& DevOps Developer Intern}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
 \begin{itemize}
   \item Developed new features for an internal rights, contracts and film catalogue platform used by \mbox{\textbf{100+ employees}}.
   \item Set up the GitLab CI/CD pipeline for a new module; deployed across three environments (DEV, UAT, PROD).
   \item Worked on the AWS infrastructure (EC2, RDS, IAM) within an Agile team.
 \end{itemize}
 \gap
-\entry{Hitachi Solutions France}{June -- July 2022}{IT Consultant Intern}{Python, Django}
+\entry{Hitachi Solutions France}{June -- July 2022}{IT Consultant Intern}{\chip{Python}\chip{Django}}
 \begin{itemize}
   \item Prototyped a supplier, product and contract management application for Sonepar, following Agile SAFe.
 \end{itemize}
