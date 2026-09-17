@@ -8,7 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
-\usepackage[top=1.2cm, bottom=1cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage[top=1cm, bottom=1cm, left=1.6cm, right=1.6cm]{geometry}
 \usepackage{XCharter}
 \usepackage[letterspace=80]{microtype}
 \usepackage{titlesec}
@@ -99,7 +99,7 @@
   \usebox\projtagbox
   \par
 }
-\newcommand{\projgap}{\vspace{9pt}}
+\newcommand{\projgap}{\vspace{7pt}}
 
 %% ── 3. Expérience : rôle d'abord, prose pleine largeur ───────────────────────
 \newcommand{\job}[5]{%
@@ -112,7 +112,7 @@
 \newlength{\skilllab}\setlength{\skilllab}{4.95cm}
 \newcommand{\skillrow}[2]{%
   \noindent\parbox[t]{\skilllab}{\textbf{#1}}%
-  \parbox[t]{\dimexpr\textwidth-\skilllab\relax}{\RaggedRight #2}\par\vspace{5pt}
+  \parbox[t]{\dimexpr\textwidth-\skilllab\relax}{\RaggedRight #2}\par\vspace{3.5pt}
 }
 
 \begin{document}
@@ -125,8 +125,10 @@
   \href{tel:+33769389008}{07 69 38 90 08} \enspace·\enspace
   \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
-  \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}\\[5pt]
-  \textit{Recherche un stage de fin d'études de 6 mois à partir de février 2027}}
+  \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}}\\[7pt]
+  \parbox{17cm}{\centering Étudiant en dernière année à EPITA, spécialisé en \textbf{traitement
+  d'images} et \textbf{calcul GPU}, également développeur full-stack freelance.
+  Recherche un \textbf{stage de fin d'études de 6 mois} à partir de février 2027.}
 \end{center}
 
 \section{Formation}
@@ -134,7 +136,7 @@
 \edu{EPITA — École d'ingénieurs en informatique}{sept. 2022 -- 2027}
     {Diplôme d'ingénieur, majeure Image — Paris}
     {Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
-\vspace{7pt}
+\vspace{5pt}
 \edu{Université du Québec à Chicoutimi (UQAC)}{janv. -- mai 2024}
     {Semestre d'échange académique — Québec, Canada}
     {Informatique générale : UML, programmation orientée objet, cybersécurité, réalité virtuelle.}
@@ -161,16 +163,21 @@
 \projgap
 \proj{ML médical}{équipe de 4}{Prédiction de la capacité vitale forcée à partir de scanners CT. Segmentation
   pulmonaire et XGBoost, livré en application web React conteneurisée.}
-  {\chip{XGBoost}\chip{React}\chip{Docker}}
+  {\chip{XGBoost}\chip{React/Next.js}\chip{NestJS}\chip{Docker}}
 
 \section{Expérience professionnelle}
 
+\job{Développeur Full-Stack \textnormal{\color{soft}(freelance)}}{\chip{Conception}\chip{Architecture}\chip{Full-Stack}\chip{Déploiement}}
+    {Auto-entrepreneur}{depuis 2026 · en cours}
+    {Application de \textbf{gestion des stocks} pour un client professionnel, de bout en bout : cahier des
+     charges, maquettes et modélisation UML, développement (Next.js, NestJS, PostgreSQL), CI/CD et mise en production.}
+\vspace{6pt}
 \job{Développeur Full-Stack \& DevOps \textnormal{\color{soft}(stage)}}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
     {Studiocanal}{sept. 2025 -- janv. 2026}
     {Développement de fonctionnalités full-stack (back-end Java/Spring Boot, front-end Angular) pour une
      plateforme interne de gestion des droits, contrats et catalogue, utilisée par \textbf{100+ collaborateurs}. Mise en place du pipeline CI/CD
      GitLab d'un nouveau module et intervention sur l'infrastructure AWS (EC2, RDS, IAM), en équipe Agile.}
-\vspace{8pt}
+\vspace{6pt}
 \job{Consultant en informatique \textnormal{\color{soft}(stage)}}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
     {Hitachi Solutions France}{juin -- juil. 2022}
     {Prototype d'application de gestion fournisseurs, produits et contrats pour le client Sonepar.}
@@ -180,7 +187,7 @@
 \skillrow{Vision par ordinateur \& IA}{\chip{Traitement d'images}\chip{Deep learning}\chip{PyTorch}\chip{OpenCV}\chip{YOLO}\chip{XGBoost}}
 \skillrow{Calcul GPU \& graphisme}{\chip{CUDA}\chip{Nsight}\chip{OpenGL}\chip{GLSL}\chip{Compute shaders}}
 \skillrow{Programmation}{\chip{C}\chip{C++}\chip{Python}\chip{Java}\chip{TypeScript}\chip{SQL}}
-\skillrow{Développement \& DevOps}{\chip{Spring Boot}\chip{Angular}\chip{React}\chip{Docker}\chip{GitLab CI}\chip{AWS}\chip{PostgreSQL}}
+\skillrow{Développement \& DevOps}{\chip{Spring Boot}\chip{Angular}\chip{React/Next.js}\chip{NestJS}\chip{Docker}\chip{GitLab CI}\chip{AWS}\chip{PostgreSQL}}
 \skillrow{Langues}{Français (langue maternelle), anglais (professionnel, TOEIC 845)}
 
 \end{document}
