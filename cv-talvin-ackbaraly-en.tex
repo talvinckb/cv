@@ -44,7 +44,7 @@
 \titleformat{\section}
   {\large\scshape\lsstyle\color{accent}}{}{0pt}{}
   [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
-\titlespacing*{\section}{0pt}{12pt}{5pt}
+\titlespacing*{\section}{0pt}{10pt}{5pt}
 
 
 %% Tag pill: \chip{CUDA}
@@ -101,9 +101,12 @@
 \newcommand{\projgap}{\vspace{7pt}}
 
 %% ── 3. Experience: role first, full-width prose ───────────────────────
+%% #1 role, #2 date, #3 employer, #4 pills, #5 prose.
+%% The date takes the top-right corner — that is where the eye lands first;
+%% the pills move down to the employer line.
 \newcommand{\job}[5]{%
   \textbf{#1}\hfill #2\par\vspace{1.5pt}
-  \textcolor{accent}{#3}\hfill {\small\color{soft}#4}\par\vspace{4pt}
+  \textcolor{accent}{#3}\hfill {#4}\par\vspace{4pt}
   #5\par
 }
 
@@ -118,16 +121,17 @@
 
 \begin{center}
   {\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
-  Engineering student — Computer Vision \& GPU Computing\\[5pt]
+  Engineering student — Computer Vision, GPU Computing \& Software Engineering\\[5pt]
   {\small
   \href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
   \href{tel:+33769389008}{+33 7 69 38 90 08} \enspace·\enspace
   \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
   \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}}\\[7pt]
-  \parbox{17cm}{\centering Final-year engineering student at EPITA, specialized in \textbf{image
-  processing} and \textbf{GPU computing}, also a freelance full-stack developer.
-  Seeking a \textbf{6-month final-year internship} starting February 2027.}
+  \parbox{17cm}{\centering Final-year engineering student at EPITA, Image specialization. Hybrid
+  profile: \textbf{computer vision} and \textbf{GPU computing} on the applied-research side,
+  \textbf{full-stack} and DevOps engineering on the production side. Seeking a \textbf{6-month
+  final-year internship in computer vision or AI} starting February 2027, in the Paris area.}
 \end{center}
 
 \section{Education}
@@ -142,10 +146,19 @@
 
 \section{Projects}
 
-\proj{Deep learning}{team of 4}{\textbf{Final-year project} with the National Library of France: detecting and
-  classifying illustrations in digitized documents. Training and benchmarking models on
+\proj{Deep learning}{team of 4}{\textbf{Final-year project} for the \textbf{National Library of France}:
+  detecting and classifying illustrations in digitized documents. Benchmarked models on
   \textbf{30\,GB}, evaluation metrics defined with the client.}
   {\chip{PyTorch}\chip{YOLO26}\chip{ConvNeXt}}
+\projgap
+\proj{Medical ML}{team of 4}{Forced vital capacity prediction from CT scans. Lung segmentation
+  and XGBoost, delivered as a containerized React web app.}
+  {\chip{Python}\chip{OpenCV}\chip{XGBoost}\chip{Docker}}
+\projgap
+\proj{Vision}{team of 2}{Automatic license plate recognition. Classical detection
+  (filters, morphology, HOG) and Random Forest: \textbf{86\% precision}. Python vs C++
+  benchmark, full GitLab workflow.}
+  {\chip{OpenCV}\chip{C++}\chip{Random Forest}}
 \projgap
 \proj{GPU computing}{team of 4}{Real-time video motion detection. Ported CPU $\rightarrow$ GPU for a
   \textbf{$\times$24 speedup}, bottleneck analysis with Nsight.}
@@ -154,31 +167,23 @@
 \proj{Real-time}{team of 2}{Real-time SPH-based fluid simulation engine.
   \textbf{75,000 particles at 60+ FPS}, physics in compute shaders.}
   {\chip{C++}\chip{OpenGL}\chip{GLSL}}
-\projgap
-\proj{Vision}{team of 2}{Automatic license plate recognition. Classical detection
-  (filters, morphology, HOG) and Random Forest: \textbf{86\% precision}. Python vs C++
-  benchmark, full GitLab workflow.}
-  {\chip{OpenCV}\chip{C++}\chip{Random Forest}}
-\projgap
-\proj{Medical ML}{team of 4}{Forced vital capacity prediction from CT scans. Lung segmentation
-  and XGBoost, delivered as a containerized React web app.}
-  {\chip{Python}\chip{OpenCV}\chip{XGBoost}\chip{Docker}}
 
 \section{Experience}
 
-\job{Full-Stack Developer \textnormal{\color{soft}(freelance)}}{\chip{Requirements}\chip{Architecture}\chip{Full-Stack}\chip{Deployment}}
-    {Self-employed}{Sept. 2026 -- ongoing}
-    {Design and development of full-stack applications for business clients, \textbf{end to end}: requirements
-     specification, mockups and UML modelling, development, CI/CD and deployment.}
+\job{Full-Stack Developer \textnormal{\color{soft}(freelance)}}{Sept. 2026 -- ongoing}
+    {Self-employed}{\chip{Next.js}\chip{TypeScript}\chip{NestJS}\chip{PostgreSQL}}
+    {Design and development of a web-based inventory management application for a business client,
+     \textbf{end to end}: requirements specification, mockups and UML modelling, full-stack development,
+     CI/CD and deployment. Real-time stock tracking, role-based permissions and QR-code identification.}
 \vspace{6pt}
-\job{Full-Stack \& DevOps Developer \textnormal{\color{soft}(internship)}}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
-    {Studiocanal}{Sept. 2025 -- Jan. 2026}
+\job{Full-Stack \& DevOps Developer \textnormal{\color{soft}(internship)}}{Sept. 2025 -- Jan. 2026}
+    {Studiocanal}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
     {Built full-stack features (Java/Spring Boot back-end, Angular front-end) for an internal rights,
      contracts and catalogue platform used by \textbf{100+ employees}. Set up the GitLab CI/CD pipeline for a new module and worked on the
      AWS infrastructure (EC2, RDS, IAM), within an Agile team.}
 \vspace{6pt}
-\job{IT Consultant \textnormal{\color{soft}(internship)}}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
-    {Hitachi Solutions France}{June -- July 2023}
+\job{IT Consultant \textnormal{\color{soft}(internship)}}{June -- July 2023}
+    {Hitachi Solutions France}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
     {Prototyped a supplier, product and contract management application for Sonepar, \textbf{Hitachi Solutions' largest client}.}
 
 \section{Skills}
