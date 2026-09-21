@@ -48,7 +48,7 @@
 \titleformat{\section}
   {\large\scshape\lsstyle\color{accent}}{}{0pt}{}
   [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
-\titlespacing*{\section}{0pt}{10pt}{5pt}
+\titlespacing*{\section}{0pt}{12pt}{5pt}
 
 \frenchsetup{StandardItemLabels=true}
 
@@ -103,7 +103,7 @@
   \usebox\projtagbox
   \par
 }
-\newcommand{\projgap}{\vspace{7pt}}
+\newcommand{\projgap}{\vspace{9pt}}
 
 %% ── 3. Expérience : rôle d'abord, prose pleine largeur ───────────────────────
 %% #1 rôle, #2 date, #3 employeur, #4 pastilles, #5 prose.
@@ -142,26 +142,22 @@
 
 \job{Projet de fin d'études — Vision par ordinateur \textnormal{\color{soft}(équipe de 4)}}{mai 2026 -- en cours}
     {EPITA $\times$ Bibliothèque nationale de France (Gallica)}{\chip{PyTorch}\chip{YOLO26}\chip{ConvNeXt}\chip{Label Studio}}
-    {Détection et classification hiérarchique d'illustrations patrimoniales de Gallica via l'API IIIF.
-     \textbf{Silver dataset de 10\,000 images} validé sur Label Studio, benchmark de modèles sur \textbf{30\,Go},
-     métriques définies avec le client.}
-\vspace{6pt}
+    {Détection (\textbf{YOLO26}) et classification hiérarchique (\textbf{ConvNeXt}) d'illustrations patrimoniales
+     dans les documents numérisés de Gallica, via l'API IIIF. Constitution d'un \textbf{silver dataset de 10\,000 images}
+     et exports structurés pour la validation humaine sur Label Studio. Benchmark de modèles, métriques définies
+     avec le client.}
+\vspace{10pt}
 \job{Développeur Full-Stack \textnormal{\color{soft}(freelance)}}{sept. 2026 -- en cours}
     {Auto-entrepreneur}{\chip{Next.js}\chip{TypeScript}\chip{NestJS}\chip{PostgreSQL}}
     {Conception et développement d'une application web de gestion de stock pour un client professionnel,
      \textbf{de bout en bout} : cahier des charges, maquettes et modélisation UML, développement full-stack,
      CI/CD et déploiement. Suivi de stock temps réel, gestion des rôles et identification par QR code.}
-\vspace{6pt}
+\vspace{10pt}
 \job{Développeur Full-Stack \& DevOps \textnormal{\color{soft}(stage)}}{sept. 2025 -- janv. 2026}
     {Studiocanal}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
     {Développement de fonctionnalités full-stack (back-end Java/Spring Boot, front-end Angular) pour une
      plateforme interne de gestion des droits, contrats et catalogue, utilisée par \textbf{100+ collaborateurs}. Mise en place du pipeline CI/CD
      GitLab d'un nouveau module et intervention sur l'infrastructure AWS (EC2, RDS, IAM), en équipe Agile.}
-\vspace{6pt}
-\job{Consultant en informatique \textnormal{\color{soft}(stage)}}{juin -- juil. 2023}
-    {Hitachi Solutions France}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
-    {Prototype d'application de gestion fournisseurs, produits et contrats pour Sonepar, \textbf{leur plus grand client}.}
-
 
 \section{Projets}
 
@@ -178,9 +174,9 @@
   \textbf{accélération de $\times$24}, analyse des goulots d'étranglement via Nsight.}
   {\chip{CUDA}\chip{C++}\chip{Nsight}}
 \projgap
-\proj{Temps réel}{équipe de 2}{Moteur de simulation de fluides temps réel basé sur SPH.
-  \textbf{75\,000 particules à plus de 60 FPS}, physique en compute shaders.}
-  {\chip{C++}\chip{OpenGL}\chip{GLSL}}
+\proj{Imagerie 3D}{équipe de 4}{Recalage 3D d'IRM cérébrales (rigide, affine, B-spline) et segmentation
+  de gliome, \textbf{suivi de l'évolution tumorale} en vues 3D et multi-coupes.}
+  {\chip{ITK}\chip{VTK}\chip{PyQt6}}
 
 
 \section{Formation}
@@ -188,7 +184,7 @@
 \edu{EPITA — École d'ingénieurs en informatique}{sept. 2022 -- juil. 2027}
     {Diplôme d'ingénieur, majeure Image — Paris}
     {Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
-\vspace{5pt}
+\vspace{7pt}
 \edu{Université du Québec à Chicoutimi (UQAC)}{janv. -- mai 2024}
     {Semestre d'échange académique — Québec, Canada}
     {Informatique générale : UML, programmation orientée objet, cybersécurité, réalité virtuelle.}
