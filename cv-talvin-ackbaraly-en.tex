@@ -77,27 +77,22 @@
   {\small\color{soft}#4}\par
 }
 
-%% ── 2. Projects: domain / prose / tags grid ──────────────────────────────────
+%% ── 2. Projects: prose (title first) / tags ──────────────────────────────────
 %% Chaque ligne calcule sa propre largeur de colonne de tags : on mesure la
 %% largeur naturelle des pastilles, on la plafonne, et la prose prend le reste.
-\newlength{\projlabelw}\setlength{\projlabelw}{2.65cm}
-\newlength{\projgapa}\setlength{\projgapa}{0.25cm}
 \newlength{\projgapb}\setlength{\projgapb}{0.4cm}
 \newlength{\projmaxtag}\setlength{\projmaxtag}{3.35cm}
 \newlength{\projtagw}\newlength{\projprosew}
 \newsavebox{\projtagbox}
-%% #1 domaine, #2 contexte (équipe), #3 prose, #4 pastilles.
+%% #1 titre (en tête de prose, sans point final), #2 prose, #3 pastilles.
 %% varwidth compose les pastilles jusqu'à \projmaxtag mais rétrécit à la largeur
 %% réellement occupée : chaque ligne garde donc sa propre gouttière.
-\newcommand{\proj}[4]{%
-  \sbox\projtagbox{\begin{varwidth}[t]{\projmaxtag}\raggedleft #4\end{varwidth}}%
+\newcommand{\proj}[3]{%
+  \sbox\projtagbox{\begin{varwidth}[t]{\projmaxtag}\raggedleft #3\end{varwidth}}%
   \setlength{\projtagw}{\wd\projtagbox}%
-  \setlength{\projprosew}{\dimexpr\textwidth-\projlabelw-\projgapa-\projgapb-\projtagw\relax}%
+  \setlength{\projprosew}{\dimexpr\textwidth-\projgapb-\projtagw\relax}%
   \noindent
-  \parbox[t]{\projlabelw}{\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
-    \textcolor{accent}{\textbf{#1}}\\[1.5pt]{\small\color{soft}#2}}%
-  \hspace{\projgapa}%
-  \parbox[t]{\projprosew}{\RaggedRight #3}%
+  \parbox[t]{\projprosew}{\RaggedRight \textcolor{accent}{\textbf{#1.}} #2}%
   \hspace{\projgapb}%
   \usebox\projtagbox
   \par
@@ -132,9 +127,9 @@
   \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
   \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}}\\[7pt]
-  \parbox{17cm}{\centering Final-year engineering student at EPITA, Image specialization. Hybrid
-  profile: \textbf{computer vision}, \textbf{AI} and \textbf{GPU computing} on the applied-research side,
-  \textbf{full-stack} and DevOps engineering on the production side. Based in the Paris area.}
+  \parbox{17cm}{\centering Final-year engineering student at EPITA, Image specialization. Seeking an end-of-studies
+  internship in \textbf{computer vision} and \textbf{AI}, with an interest in \textbf{GPU computing}. Based in
+  the Paris area.}
 \end{center}
 
 \section{Experience}
@@ -143,8 +138,8 @@
     {EPITA $\times$ National Library of France (Gallica)}{\chip{PyTorch}\chip{YOLO26}\chip{ConvNeXt}\chip{Label Studio}}
     {Detection (\textbf{YOLO26}) and hierarchical classification (\textbf{ConvNeXt}) of heritage illustrations in
      Gallica's digitized documents, retrieved through the IIIF API. Built a \textbf{10,000-image silver dataset}
-     with structured exports for human validation in Label Studio. Benchmarked models, with evaluation
-     metrics defined with the client.}
+     with structured exports for human validation in Label Studio. Benchmarked models on metrics
+     defined with the client: \textbf{94.7\%~mAP50} in detection (85.2\% mAP50-95).}
 \vspace{10pt}
 \job{Full-Stack Developer \textnormal{\color{soft}(freelance)}}{Sept. 2026 -- ongoing}
     {Self-employed}{\chip{Next.js}\chip{TypeScript}\chip{NestJS}\chip{PostgreSQL}}
@@ -160,21 +155,20 @@
 
 \section{Projects}
 
-\proj{Medical ML}{team of 4}{Forced vital capacity prediction from CT scans. Lung segmentation
-  and XGBoost, delivered as a containerized React web app.}
+\proj{Lung function prediction}{Forced vital capacity estimation from CT scans: lung segmentation and
+  XGBoost, delivered as a containerized React web app.}
   {\chip{Python}\chip{OpenCV}\chip{XGBoost}\chip{Docker}}
 \projgap
-\proj{Vision}{team of 2}{Automatic license plate recognition. Classical detection
-  (filters, morphology, HOG) and Random Forest: \textbf{86\% precision}. Python vs C++
-  benchmark, full GitLab workflow.}
+\proj{License plate recognition}{Classical detection (filters, morphology, HOG) and Random Forest:
+  \textbf{86\% precision}. Python vs C++ benchmark, full GitLab workflow.}
   {\chip{OpenCV}\chip{C++}\chip{Random Forest}}
 \projgap
-\proj{GPU computing}{team of 4}{Real-time video motion detection. Ported CPU $\rightarrow$ GPU for a
-  \textbf{$\times$24 speedup}, bottleneck analysis with Nsight.}
+\proj{GPU motion detection}{Real-time video processing ported from CPU to GPU: \textbf{$\times$24 speedup},
+  bottleneck analysis with Nsight.}
   {\chip{CUDA}\chip{C++}\chip{Nsight}}
 \projgap
-\proj{3D imaging}{team of 4}{3D registration of brain MRI scans (rigid, affine, B-spline) and glioma
-  segmentation, \textbf{tracking tumor growth} in 3D and multi-slice views.}
+\proj{Brain tumor tracking}{3D registration of brain MRI scans (rigid, affine, B-spline) and glioma
+  segmentation, \textbf{visualizing tumor progression} in 3D and multi-slice views.}
   {\chip{ITK}\chip{VTK}\chip{PyQt6}}
 
 
