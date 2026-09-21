@@ -39,6 +39,10 @@
 \setlength{\parskip}{0pt}
 \linespread{1.02}
 \RaggedRight
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\emergencystretch=1em
+\microtypesetup{expansion=false}
 
 %% Section: letter-spaced small caps over a hairline
 \titleformat{\section}
@@ -134,23 +138,33 @@
   \textbf{full-stack} et DevOps côté production. Basé en Île-de-France.}
 \end{center}
 
-\section{Formation}
+\section{Expérience professionnelle}
 
-\edu{EPITA — École d'ingénieurs en informatique}{sept. 2022 -- juil. 2027}
-    {Diplôme d'ingénieur, majeure Image — Paris}
-    {Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
-\vspace{5pt}
-\edu{Université du Québec à Chicoutimi (UQAC)}{janv. -- mai 2024}
-    {Semestre d'échange académique — Québec, Canada}
-    {Informatique générale : UML, programmation orientée objet, cybersécurité, réalité virtuelle.}
+\job{Projet de fin d'études — Vision par ordinateur \textnormal{\color{soft}(équipe de 4)}}{mai 2026 -- en cours}
+    {EPITA $\times$ Bibliothèque nationale de France (Gallica)}{\chip{PyTorch}\chip{YOLO26}\chip{ConvNeXt}\chip{Label Studio}}
+    {Détection et classification hiérarchique d'illustrations patrimoniales de Gallica via l'API IIIF.
+     \textbf{Silver dataset de 10\,000 images} validé sur Label Studio, benchmark de modèles sur \textbf{30\,Go},
+     métriques définies avec le client.}
+\vspace{6pt}
+\job{Développeur Full-Stack \textnormal{\color{soft}(freelance)}}{sept. 2026 -- en cours}
+    {Auto-entrepreneur}{\chip{Next.js}\chip{TypeScript}\chip{NestJS}\chip{PostgreSQL}}
+    {Conception et développement d'une application web de gestion de stock pour un client professionnel,
+     \textbf{de bout en bout} : cahier des charges, maquettes et modélisation UML, développement full-stack,
+     CI/CD et déploiement. Suivi de stock temps réel, gestion des rôles et identification par QR code.}
+\vspace{6pt}
+\job{Développeur Full-Stack \& DevOps \textnormal{\color{soft}(stage)}}{sept. 2025 -- janv. 2026}
+    {Studiocanal}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
+    {Développement de fonctionnalités full-stack (back-end Java/Spring Boot, front-end Angular) pour une
+     plateforme interne de gestion des droits, contrats et catalogue, utilisée par \textbf{100+ collaborateurs}. Mise en place du pipeline CI/CD
+     GitLab d'un nouveau module et intervention sur l'infrastructure AWS (EC2, RDS, IAM), en équipe Agile.}
+\vspace{6pt}
+\job{Consultant en informatique \textnormal{\color{soft}(stage)}}{juin -- juil. 2023}
+    {Hitachi Solutions France}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
+    {Prototype d'application de gestion fournisseurs, produits et contrats pour Sonepar, \textbf{leur plus grand client}.}
+
 
 \section{Projets}
 
-\proj{Deep learning}{équipe de 4}{\textbf{Projet de fin d'études} pour la \textbf{Bibliothèque nationale
-  de France} : détection et classification d'illustrations dans des documents numérisés. Benchmark de
-  modèles sur \textbf{30\,Go}, métriques définies avec le client.}
-  {\chip{PyTorch}\chip{YOLO26}\chip{ConvNeXt}}
-\projgap
 \proj{ML médical}{équipe de 4}{Prédiction de la capacité vitale forcée à partir de scanners CT. Segmentation
   pulmonaire et XGBoost, livré en application web React conteneurisée.}
   {\chip{Python}\chip{OpenCV}\chip{XGBoost}\chip{Docker}}
@@ -168,23 +182,17 @@
   \textbf{75\,000 particules à plus de 60 FPS}, physique en compute shaders.}
   {\chip{C++}\chip{OpenGL}\chip{GLSL}}
 
-\section{Expérience professionnelle}
 
-\job{Développeur Full-Stack \textnormal{\color{soft}(freelance)}}{sept. 2026 -- en cours}
-    {Auto-entrepreneur}{\chip{Next.js}\chip{TypeScript}\chip{NestJS}\chip{PostgreSQL}}
-    {Conception et développement d'une application web de gestion de stock pour un client professionnel,
-     \textbf{de bout en bout} : cahier des charges, maquettes et modélisation UML, développement full-stack,
-     CI/CD et déploiement. Suivi de stock temps réel, gestion des rôles et identification par QR code.}
-\vspace{6pt}
-\job{Développeur Full-Stack \& DevOps \textnormal{\color{soft}(stage)}}{sept. 2025 -- janv. 2026}
-    {Studiocanal}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
-    {Développement de fonctionnalités full-stack (back-end Java/Spring Boot, front-end Angular) pour une
-     plateforme interne de gestion des droits, contrats et catalogue, utilisée par \textbf{100+ collaborateurs}. Mise en place du pipeline CI/CD
-     GitLab d'un nouveau module et intervention sur l'infrastructure AWS (EC2, RDS, IAM), en équipe Agile.}
-\vspace{6pt}
-\job{Consultant en informatique \textnormal{\color{soft}(stage)}}{juin -- juil. 2023}
-    {Hitachi Solutions France}{\chip{Python}\chip{Django}\chip{Agile SAFe}}
-    {Prototype d'application de gestion fournisseurs, produits et contrats pour Sonepar, \textbf{leur plus grand client}.}
+\section{Formation}
+
+\edu{EPITA — École d'ingénieurs en informatique}{sept. 2022 -- juil. 2027}
+    {Diplôme d'ingénieur, majeure Image — Paris}
+    {Traitement \& synthèse d'images, vision par ordinateur, deep learning, calcul GPU.}
+\vspace{5pt}
+\edu{Université du Québec à Chicoutimi (UQAC)}{janv. -- mai 2024}
+    {Semestre d'échange académique — Québec, Canada}
+    {Informatique générale : UML, programmation orientée objet, cybersécurité, réalité virtuelle.}
+
 
 \section{Compétences}
 
