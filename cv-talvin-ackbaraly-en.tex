@@ -19,6 +19,7 @@
 \usepackage[scaled=0.94,noupquote]{inconsolata}
 \usepackage{tikz}
 \usepackage{varwidth}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
@@ -116,9 +117,28 @@
   \parbox[t]{\dimexpr\textwidth-\skilllab\relax}{\RaggedRight #2}\par\vspace{3.5pt}
 }
 
+
+%% ── Header: round photo, top right ───────────────────────────────────
+%% Photo: assets/photo.jpg; otherwise an empty placeholder is shown.
+\newlength{\photosize}\setlength{\photosize}{3.4cm}
+\IfFileExists{assets/photo.jpg}{\def\photofile{assets/photo.jpg}}{%
+  \IfFileExists{../../assets/photo.jpg}{\def\photofile{../../assets/photo.jpg}}{}}
+\newcommand{\headerphoto}{%
+  \ifdefined\photofile
+    \tikz{\clip (0,0) circle (0.5\photosize);
+      \node at (0,0) {\includegraphics[width=\photosize]{\photofile}};
+      \draw[hair, line width=0.6pt] (0,0) circle (0.5\photosize);}%
+  \else
+    \tikz{\draw[hair, fill=chipbg, line width=0.6pt] (0,0) circle (0.5\photosize);
+      \node[text=chipfg, font=\footnotesize] at (0,0) {Photo};}%
+  \fi
+}
+
 \begin{document}
 
-\begin{center}
+\noindent
+\begin{minipage}[c]{\dimexpr\textwidth-\photosize-0.3cm\relax}
+  \RaggedRight
   {\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
   Final-year internship — Computer Vision \& AI · 6 months from February 2027\\[5pt]
   {\small
@@ -127,9 +147,12 @@
   \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
   \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}}\\[7pt]
-  \parbox{17cm}{\centering Final-year engineering student at EPITA, Image specialization, focused on
-  \textbf{computer vision} and \textbf{AI}, with an interest in \textbf{GPU computing}. Based in the Paris area.}
-\end{center}
+  Final-year engineering student at EPITA, Image specialization, focused on
+  \textbf{computer vision} and \textbf{AI}, with an interest in \textbf{GPU computing}. Based in the Paris area.
+\end{minipage}\hfill
+\begin{minipage}[c]{\photosize}
+  \headerphoto
+\end{minipage}
 
 \section{Experience}
 
