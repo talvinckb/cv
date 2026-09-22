@@ -19,6 +19,7 @@
 \usepackage[scaled=0.94,noupquote]{inconsolata}
 \usepackage{tikz}
 \usepackage{varwidth}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 
 \hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
@@ -48,7 +49,7 @@
 \titleformat{\section}
   {\large\scshape\lsstyle\color{accent}}{}{0pt}{}
   [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
-\titlespacing*{\section}{0pt}{12pt}{5pt}
+\titlespacing*{\section}{0pt}{13pt}{5pt}
 
 
 %% Tag pill: \chip{CUDA}
@@ -92,12 +93,12 @@
   \setlength{\projtagw}{\wd\projtagbox}%
   \setlength{\projprosew}{\dimexpr\textwidth-\projgapb-\projtagw\relax}%
   \noindent
-  \parbox[t]{\projprosew}{\RaggedRight \textcolor{accent}{\textbf{#1.}} #2}%
+  \parbox[t]{\projprosew}{\RaggedRight \textbf{#1.} #2}%
   \hspace{\projgapb}%
   \usebox\projtagbox
   \par
 }
-\newcommand{\projgap}{\vspace{9pt}}
+\newcommand{\projgap}{\vspace{10pt}}
 
 %% ── 3. Experience: role first, full-width prose ───────────────────────
 %% #1 role, #2 date, #3 employer, #4 pills, #5 prose.
@@ -116,41 +117,63 @@
   \parbox[t]{\dimexpr\textwidth-\skilllab\relax}{\RaggedRight #2}\par\vspace{3.5pt}
 }
 
+
+%% ── Header: round photo, top right ───────────────────────────────────
+%% Photo: assets/photo.jpg; otherwise an empty placeholder is shown.
+\newlength{\photosize}\setlength{\photosize}{3.4cm}
+\IfFileExists{assets/photo.jpg}{\def\photofile{assets/photo.jpg}}{%
+  \IfFileExists{../../assets/photo.jpg}{\def\photofile{../../assets/photo.jpg}}{}}
+\newcommand{\headerphoto}{%
+  \ifdefined\photofile
+    \tikz{\clip (0,0) circle (0.5\photosize);
+      \node at (0,0) {\includegraphics[width=\photosize]{\photofile}};
+      \draw[hair, line width=0.6pt] (0,0) circle (0.5\photosize);}%
+  \else
+    \tikz{\draw[hair, fill=chipbg, line width=0.6pt] (0,0) circle (0.5\photosize);
+      \node[text=chipfg, font=\footnotesize] at (0,0) {Photo};}%
+  \fi
+}
+
 \begin{document}
 
-\begin{center}
+\noindent
+\begin{minipage}[c]{\dimexpr\textwidth-\photosize-0.3cm\relax}
+  \RaggedRight
   {\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
-  Final-year internship — Computer Vision \& AI · 6 months from February 2027\\[5pt]
+  \textbf{Final-year internship — Computer Vision \& AI · 6 months from February 2027}\\[5pt]
   {\small
   \href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
   \href{tel:+33769389008}{+33 7 69 38 90 08} \enspace·\enspace
   \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
   \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}}\\[7pt]
-  \parbox{17cm}{\centering Final-year engineering student at EPITA, Image specialization, focused on
-  \textbf{computer vision} and \textbf{AI}, with an interest in \textbf{GPU computing}. Based in the Paris area.}
-\end{center}
+  Final-year engineering student at EPITA, Image specialization. After professional experience
+  in full-stack development and software engineering, I now want to put my specialization in computer
+  vision, AI and GPU computing into practice in industry. Based in the Paris area.
+\end{minipage}\hfill
+\begin{minipage}[c]{\photosize}
+  \headerphoto
+\end{minipage}
 
 \section{Experience}
 
 \job{Final-Year Project — Computer Vision \textnormal{\color{soft}(team of 4)}}{May 2026 -- ongoing}
     {EPITA $\times$ National Library of France (Gallica)}{\chip{PyTorch}\chip{YOLO26}\chip{ConvNeXt}\chip{Label Studio}}
-    {Detection (\textbf{YOLO26}) and hierarchical classification (\textbf{ConvNeXt}) of heritage illustrations in
-     Gallica's digitized documents, via the IIIF API. \textbf{In charge of detection}: training on a
-     \textbf{10,000-image dataset} annotated by the BnF in Label Studio, benchmarking models
-     and preprocessing, hyperparameter tuning, reaching \textbf{94.7\%~mAP50} on the validation set
+    {Detection (YOLO26) and hierarchical classification (ConvNeXt) of heritage illustrations in
+     Gallica's digitized documents, via the IIIF API. In charge of detection: training on a
+     10,000-image dataset annotated by the BnF in Label Studio, benchmarking models,
+     hyperparameter tuning, reaching \textbf{94.7\%~mAP50} on the validation set
      (85.2\%~mAP50-95).}
-\vspace{10pt}
+\vspace{11pt}
 \job{Full-Stack Developer \textnormal{\color{soft}(freelance)}}{Sept. 2026 -- ongoing}
     {Self-employed}{\chip{Next.js}\chip{TypeScript}\chip{NestJS}\chip{PostgreSQL}}
     {Launched a freelance web development business. Ongoing engagement: an inventory management web app
-     for a business client, handled \textbf{end to end}, from requirements specification (mockups, UML modelling)
-     to full-stack development, CI/CD and deployment.}
-\vspace{10pt}
+     for a business client, handled end to end, from requirements specification to deployment.}
+\vspace{11pt}
 \job{Full-Stack \& DevOps Developer \textnormal{\color{soft}(internship)}}{Sept. 2025 -- Jan. 2026}
     {Studiocanal}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
     {Built full-stack features (Java/Spring Boot back-end, Angular front-end) for an internal rights,
-     contracts and catalogue platform used by \textbf{100+ employees}. Set up the GitLab CI/CD pipeline for a new module and worked on the
+     contracts and catalogue platform used by 100+ employees. Set up the GitLab CI/CD pipeline for a new module and worked on the
      AWS infrastructure (EC2, RDS, IAM), within an Agile team.}
 
 \section{Projects}
@@ -168,7 +191,7 @@
   {\chip{CUDA}\chip{C++}\chip{Nsight}}
 \projgap
 \proj{Brain tumor tracking}{3D registration of brain MRI scans (rigid, affine, B-spline), glioma
-  segmentation and \textbf{quantified tumor progression} (+61.8\% in volume).}
+  segmentation and quantified tumor progression (+61.8\% in volume).}
   {\chip{ITK}\chip{VTK}\chip{PyQt6}}
 
 
