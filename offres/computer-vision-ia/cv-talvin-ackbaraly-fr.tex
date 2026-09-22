@@ -94,7 +94,7 @@
   \setlength{\projtagw}{\wd\projtagbox}%
   \setlength{\projprosew}{\dimexpr\textwidth-\projgapb-\projtagw\relax}%
   \noindent
-  \parbox[t]{\projprosew}{\RaggedRight \textcolor{accent}{\textbf{#1.}} #2}%
+  \parbox[t]{\projprosew}{\RaggedRight \textbf{#1.} #2}%
   \hspace{\projgapb}%
   \usebox\projtagbox
   \par
@@ -141,15 +141,15 @@
 \begin{minipage}[c]{\dimexpr\textwidth-\photosize-0.3cm\relax}
   \RaggedRight
   {\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
-  Stage de fin d'études — Vision par ordinateur \& IA · 6 mois dès février 2027\\[5pt]
+  \textbf{Stage de fin d'études — Vision par ordinateur \& IA · 6 mois dès février 2027}\\[5pt]
   {\small
   \href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
   \href{tel:+33769389008}{07 69 38 90 08} \enspace·\enspace
   \href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com}\\[2pt]
   \href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
   \href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}}\\[7pt]
-  Étudiant à EPITA (majeure Image), orienté \textbf{vision par ordinateur}
-  et \textbf{IA}, basé en Île-de-France.
+  Étudiant à EPITA (majeure Image), orienté vision par ordinateur
+  et IA, basé en Île-de-France.
 \end{minipage}\hfill
 \begin{minipage}[c]{\photosize}
   \headerphoto
@@ -159,27 +159,27 @@
 
 \job{Projet de fin d'études — Vision par ordinateur \textnormal{\color{soft}(équipe de 4)}}{mai 2026 -- en cours}
     {EPITA $\times$ Bibliothèque nationale de France (Gallica)}{\chip{PyTorch}\chip{YOLO26}\chip{ConvNeXt}\chip{Label Studio}}
-    {Détection (\textbf{YOLO26}) et classification hiérarchique (\textbf{ConvNeXt}) d'illustrations patrimoniales
-     dans les documents numérisés de Gallica, via l'API IIIF. \textbf{En charge de la détection} : entraînement sur
-     un \textbf{dataset de 10\,000 images} annotées par la BnF sur Label Studio, benchmark de
+    {Détection (YOLO26) et classification hiérarchique (ConvNeXt) d'illustrations patrimoniales
+     dans les documents numérisés de Gallica, via l'API IIIF. En charge de la détection : entraînement sur
+     un dataset de 10\,000 images annotées par la BnF sur Label Studio, benchmark de
      modèles et de prétraitements, réglage des hyperparamètres, pour \textbf{94,7\,\%~de~mAP50}
      (85,2\,\% en mAP50-95) sur le jeu de validation.}
 \vspace{12pt}
 \job{Développeur Full-Stack \textnormal{\color{soft}(freelance)}}{sept. 2026 -- en cours}
     {Auto-entrepreneur}{\chip{Next.js}\chip{TypeScript}\chip{NestJS}\chip{PostgreSQL}}
     {Lancement d'une activité de développement web en freelance. Mission en cours : application de
-     gestion de stock pour un client professionnel, prise en charge \textbf{de bout en bout}, du cahier des charges
+     gestion de stock pour un client professionnel, prise en charge de bout en bout, du cahier des charges
      (maquettes, modélisation UML) au développement full-stack, à la CI/CD et au déploiement.}
 \vspace{12pt}
 \job{Développeur Full-Stack \& DevOps \textnormal{\color{soft}(stage)}}{sept. 2025 -- janv. 2026}
     {Studiocanal}{\chip{Java}\chip{Spring Boot}\chip{Angular}\chip{AWS}}
     {Développement de fonctionnalités full-stack (back-end Java/Spring Boot, front-end Angular) pour une
-     plateforme interne de gestion des droits, contrats et catalogue, utilisée par \textbf{100+ collaborateurs}. Mise en place du pipeline CI/CD
+     plateforme interne de gestion des droits, contrats et catalogue, utilisée par 100+ collaborateurs. Mise en place du pipeline CI/CD
      GitLab d'un nouveau module et intervention sur l'infrastructure AWS (EC2, RDS, IAM), en équipe Agile.}
 
 \section{Projets}
 
-\proj{Segmentation d'images avec U-Net}{U-Net (encodeur-décodeur, skip connections) implémenté \textbf{from scratch} en
+\proj{Segmentation d'images avec U-Net}{U-Net (encodeur-décodeur, skip connections) implémenté from scratch en
   PyTorch, sans modèle pré-entraîné : segmentation premier plan / arrière-plan sur COCO, avec boucle d'entraînement
   et évaluation sur données non vues.}
   {\chip{PyTorch}\chip{U-Net}\chip{COCO}}
@@ -193,7 +193,7 @@
   {\chip{OpenCV}\chip{C++}\chip{Random Forest}}
 \projgap
 \proj{Suivi de tumeurs cérébrales}{Recalage 3D d'IRM (rigide, affine, B-spline), segmentation de gliome
-  et \textbf{quantification de l'évolution tumorale} (+61,8\,\% de volume), avec visualisation 3D.}
+  et quantification de l'évolution tumorale (+61,8\,\% de volume), avec visualisation 3D.}
   {\chip{ITK}\chip{VTK}\chip{PyQt6}}
 
 
