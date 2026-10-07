@@ -1,0 +1,101 @@
+%% ─────────────────────────────────────────────────────────────────────────────
+%% Cover letter — Talvin Ackbaraly × Qantev
+%% Internship: AI Engineer Intern
+%% Même charte que le CV (XCharter, un seul accent, filets fins)
+%% Compile: latexmk -pdf cover-letter-qantev.tex
+%% ─────────────────────────────────────────────────────────────────────────────
+\documentclass[11pt, a4paper]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[top=1.6cm, bottom=1.6cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{XCharter}
+\usepackage[letterspace=80]{microtype}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{pdftitle={Cover letter — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
+
+%% ── Colour system: identique au CV ──────────────────────────────────────────
+\definecolor{accent}{HTML}{2563A0}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{soft}{HTML}{6E6E6E}
+\definecolor{hair}{HTML}{C9C9C9}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+\AtBeginDocument{\color{ink}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\JustifyingParindent}{0pt}
+\setlength{\parskip}{8pt}
+\linespread{1.08}
+\microtypesetup{expansion=false}
+
+\begin{document}
+
+%% ── En-tête : expéditeur ─────────────────────────────────────────────────────
+%% Coordonnées seulement : l'école et les liens sont déjà dans le CV
+{\color{accent}\fontsize{22}{26}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\par\vspace{3pt}
+{\setlength{\parskip}{0pt}
+94270 Le Kremlin-Bicêtre, France\\
+\href{tel:+33769389008}{\textcolor{ink}{+33 7 69 38 90 08}}\\
+\href{mailto:talvin.ackbaraly@icloud.com}{\textcolor{ink}{talvin.ackbaraly@icloud.com}}\par}
+\vspace{-4pt}{\color{hair}\rule{\textwidth}{0.4pt}}\par
+
+%% ── Destinataire et date ─────────────────────────────────────────────────────
+\vspace{2pt}
+\hfill\begin{tabular}[t]{@{}l@{}}
+  \textbf{Qantev}\\
+  Engineering team\\
+  Paris
+\end{tabular}
+
+\today
+
+\vspace{2pt}
+\textbf{Application for the AI Engineer Intern position — 6 months from February 2027}
+
+\vspace{2pt}
+Dear Qantev team,
+
+\justifying
+I am a final-year engineering student at EPITA, specialized in computer vision and deep learning,
+and I am applying for your AI Engineer internship. What draws me to Qantev is the gap your offer
+describes between research and production. I have worked on both sides, and the hardest part has
+always been the step in between: turning a model that performs well in evaluation into a system
+people can rely on. In health insurance, where a multi-step pipeline acts on real claims, that step
+matters even more.
+
+On the AI side, my final-year project with the National Library of France detects and classifies
+illustrations in documents fetched through Gallica's IIIF API. I own the detection stage: training
+on 10,000 annotated images, benchmarking models and tuning hyperparameters, up to 94.7\,\% mAP50.
+I also like to understand models beyond their APIs: I implemented a U-Net from scratch in PyTorch,
+without any pretrained weights. This work taught me that a model is only as good as the way it is measured, which is just as true when
+iterating on prompts and agent behavior.
+
+On the engineering side, I build and run software in Python and TypeScript. As a freelancer, I
+develop an inventory management application for a business client and operate it in production on
+my own: NestJS and Next.js, PostgreSQL, automated backups, error tracking with Sentry and uptime
+monitoring. At Studiocanal, I shipped features in an existing Java and Angular codebase used by
+more than 100 employees, and set up a GitLab CI/CD pipeline on AWS. I also enjoy tracking down
+bottlenecks: profiling a real-time video pipeline with Nsight and porting it to the GPU gave a
+24-fold speedup.
+
+Finally, I work every day with coding agents such as Claude Code, Codex and Antigravity. Using
+them has shown me how much an agent's output depends on its context, its retrieval and the checks
+around it. I would now like to move from using agents to building them, and Qantev's agentic
+pipelines and RAG applications are exactly where I want to learn to do that well.
+
+I am available for a six-month internship in Paris from February 2027, and I would be glad to
+discuss my application with you in an interview.
+
+\vspace{4pt}
+Kind regards,
+
+\vspace{10pt}
+\hfill Talvin Ackbaraly\hspace*{1cm}
+
+\end{document}
