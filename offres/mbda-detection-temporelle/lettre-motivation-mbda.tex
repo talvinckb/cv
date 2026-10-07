@@ -1,0 +1,106 @@
+%% ─────────────────────────────────────────────────────────────────────────────
+%% Lettre de motivation — Talvin Ackbaraly × MBDA France
+%% Stage : démonstrateur embarqué de détection d'objets par IA à dimension temporelle
+%% Même charte que le CV (XCharter, un seul accent, filets fins)
+%% Compile: latexmk -pdf lettre-motivation-mbda.tex
+%% ─────────────────────────────────────────────────────────────────────────────
+\documentclass[11pt, a4paper]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[top=1.6cm, bottom=1.6cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{XCharter}
+\usepackage[letterspace=80]{microtype}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{pdftitle={Lettre de motivation — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
+
+%% ── Colour system: identique au CV ──────────────────────────────────────────
+\definecolor{accent}{HTML}{2563A0}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{soft}{HTML}{6E6E6E}
+\definecolor{hair}{HTML}{C9C9C9}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+\AtBeginDocument{\color{ink}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\JustifyingParindent}{0pt}
+\setlength{\parskip}{8pt}
+\linespread{1.08}
+\microtypesetup{expansion=false}
+
+\begin{document}
+
+%% ── En-tête : expéditeur ─────────────────────────────────────────────────────
+%% Coordonnées seulement : l'école et les liens sont déjà dans le CV
+{\color{accent}\fontsize{22}{26}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\par\vspace{3pt}
+{\setlength{\parskip}{0pt}
+94270 Le Kremlin-Bicêtre\\
+\href{tel:+33769389008}{\textcolor{ink}{07 69 38 90 08}}\\
+\href{mailto:talvin.ackbaraly@icloud.com}{\textcolor{ink}{talvin.ackbaraly@icloud.com}}\par}
+\vspace{-4pt}{\color{hair}\rule{\textwidth}{0.4pt}}\par
+
+%% ── Destinataire et date ─────────────────────────────────────────────────────
+\vspace{2pt}
+%% Bloc calé contre la marge droite, texte aligné à gauche dans le bloc
+\hfill\begin{tabular}[t]{@{}l@{}}
+  \textbf{MBDA France}\\
+  Direction Technique\\
+  1 avenue Réaumur\\
+  92350 Le Plessis-Robinson
+\end{tabular}
+
+Le \today
+
+\vspace{2pt}
+\textbf{Objet : candidature au stage de fin d'études « Démonstrateur embarqué de détection d'objets
+par IA à dimension temporelle » — 6 mois à partir de février 2027}
+
+\vspace{2pt}
+Madame, Monsieur,
+
+
+\justifying
+Étudiant en dernière année du cycle ingénieur à l'EPITA, dans la majeure Image, je vous adresse
+ma candidature pour le stage consacré à un démonstrateur embarqué de détection d'objets par IA
+à dimension temporelle, au sein de la Direction Technique de MBDA France. Ce sujet réunit les
+deux domaines qui m'intéressent le plus : la détection par deep learning et l'optimisation de
+code sur du matériel réel. J'aimerais aller de l'état de l'art jusqu'à un démonstrateur qui
+tourne sur calculateur.
+
+La détection d'objets par IA est au cœur de mon projet de fin d'études, mené avec la
+Bibliothèque nationale de France. J'y suis en charge de la détection : j'ai comparé plusieurs
+architectures, réglé les hyperparamètres et évalué les modèles sur un jeu de validation, jusqu'à
+94,7\,\% de mAP50 sur 10\,000 images annotées. C'est la démarche que décrit votre offre : faire
+l'état de l'art, retenir les méthodes les plus prometteuses et les tester sur des cas concrets.
+J'ai aussi implémenté un U-Net de A à Z en PyTorch, sans modèle pré-entraîné.
+
+La dimension temporelle est ce qui m'attire le plus dans ce stage. J'ai réalisé un projet de
+détection de mouvement sur des flux vidéo avec des méthodes classiques : je connais donc les
+approches auxquelles il faudra se comparer. Exploiter plusieurs images successives devrait aider
+à détecter des objets petits, peu contrastés ou partiellement masqués, là où un détecteur image
+par image échoue. Pendant l'état de l'art, j'aimerais étudier la fusion d'informations entre
+images et les architectures qui traitent directement des séquences.
+
+Le portage sur calculateur COTS est l'autre point fort de ce sujet pour moi. Dans ce même projet
+de détection de mouvement, j'ai porté le traitement du CPU au GPU en CUDA et C++, avec une
+accélération de ×24, en analysant les goulots d'étranglement avec Nsight. Je connais donc la
+démarche : mesurer, identifier ce qui limite les performances, optimiser, puis vérifier que les
+résultats restent conformes. Mon expérience en ingénierie logicielle (stage chez Studiocanal,
+freelance) m'a aussi habitué à écrire du code propre et reproductible. Enfin, je suis à l'aise pour rédiger un rapport scientifique, en
+français comme en anglais (TOEIC 845), ce qui compte dans l'environnement international de MBDA.
+
+Je suis disponible pour un stage de six mois à partir de février 2027 et serais heureux de vous
+présenter plus en détail ma motivation lors d'un entretien.
+
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+\vspace{10pt}
+\hfill Talvin Ackbaraly\hspace*{1cm}
+
+\end{document}
