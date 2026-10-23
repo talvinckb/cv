@@ -1,0 +1,103 @@
+%% ─────────────────────────────────────────────────────────────────────────────
+%% Lettre de motivation — Talvin Ackbaraly × Valtech
+%% Stage : Intelligence Artificielle (Talent Program)
+%% Même charte que le CV (XCharter, un seul accent, filets fins)
+%% Compile: latexmk -pdf lettre-motivation-valtech.tex
+%% ─────────────────────────────────────────────────────────────────────────────
+\documentclass[11pt, a4paper]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[top=1.6cm, bottom=1.6cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{XCharter}
+\usepackage[letterspace=80]{microtype}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{pdftitle={Lettre de motivation — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
+
+%% ── Colour system: identique au CV ──────────────────────────────────────────
+\definecolor{accent}{HTML}{2563A0}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{soft}{HTML}{6E6E6E}
+\definecolor{hair}{HTML}{C9C9C9}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+\AtBeginDocument{\color{ink}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\JustifyingParindent}{0pt}
+\setlength{\parskip}{8pt}
+\linespread{1.08}
+\microtypesetup{expansion=false}
+
+\begin{document}
+
+%% ── En-tête : expéditeur ─────────────────────────────────────────────────────
+%% Coordonnées seulement : l'école et les liens sont déjà dans le CV
+{\color{accent}\fontsize{22}{26}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\par\vspace{3pt}
+{\setlength{\parskip}{0pt}
+94270 Le Kremlin-Bicêtre\\
+\href{tel:+33769389008}{\textcolor{ink}{07 69 38 90 08}}\\
+\href{mailto:talvin.ackbaraly@icloud.com}{\textcolor{ink}{talvin.ackbaraly@icloud.com}}\par}
+\vspace{-4pt}{\color{hair}\rule{\textwidth}{0.4pt}}\par
+
+%% ── Destinataire et date ─────────────────────────────────────────────────────
+\vspace{2pt}
+%% Bloc calé contre la marge droite, texte aligné à gauche dans le bloc
+\hfill\begin{tabular}[t]{@{}l@{}}
+  \textbf{Valtech}\\
+  Équipe Talent Acquisition\\
+  Paris
+\end{tabular}
+
+Le \today
+
+\vspace{2pt}
+\textbf{Objet : candidature au stage Intelligence Artificielle (Talent Program) — 6 mois à partir
+de février 2027}
+
+\vspace{2pt}
+Madame, Monsieur,
+
+\justifying
+Étudiant en dernière année à EPITA, majeure Image, je vous adresse ma candidature pour le stage
+Intelligence Artificielle de votre Talent Program. Ce qui m'attire chez Valtech, c'est le chemin
+que décrit votre offre : partir d'un cas d'usage métier réel, prototyper une solution d'IA
+générative, la mesurer, puis la présenter à un client. C'est un chemin que j'ai déjà parcouru
+par morceaux, et que je veux maintenant suivre de bout en bout sur des projets LLM.
+
+Côté IA, mon projet de fin d'études avec la Bibliothèque nationale de France détecte et classe les
+illustrations des documents de Gallica, récupérés via l'API IIIF. J'y suis responsable de la
+détection : entraînement sur 10\,000 images annotées, comparaison de plusieurs modèles, réglage des
+hyperparamètres, jusqu'à 94,7\,\% de mAP50. J'ai aussi implémenté un U-Net from scratch en
+PyTorch, sans poids pré-entraînés. Ces projets m'ont appris qu'un modèle ne vaut que par la façon
+dont on l'évalue, et c'est ce réflexe que je veux appliquer aux protocoles d'évaluation de
+solutions RAG ou agentiques.
+
+Côté développement, je sais transformer un modèle en quelque chose que l'on peut montrer et
+utiliser. En freelance, je conçois et j'exploite seul une application de gestion de stock pour un
+client professionnel, du recueil des besoins à la mise en production (Next.js, NestJS,
+PostgreSQL). Chez Studiocanal, j'ai développé des fonctionnalités full-stack pour une plateforme
+utilisée par plus de 100 collaborateurs, et chez Hitachi Solutions, j'ai réalisé un prototype Django
+pour Sonepar, premier client du cabinet, de la modélisation UML à la démonstration.
+
+Enfin, je travaille au quotidien avec des agents de code comme Claude Code, Codex ou Antigravity.
+Leur usage m'a montré combien la qualité d'un agent dépend de son contexte, de ses outils et des
+vérifications qui l'entourent. Je souhaite désormais passer de leur utilisation à leur conception,
+et les projets d'agents, de RAG et de workflows orchestrés de votre équipe IA sont exactement le
+cadre dans lequel je veux apprendre à le faire, avec la perspective de poursuivre en CDI.
+
+Je suis disponible pour un stage de six mois à Paris à partir de février 2027, et je serais
+heureux d'échanger avec vous lors d'un entretien.
+
+\vspace{4pt}
+Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.
+
+\vspace{10pt}
+\hfill Talvin Ackbaraly\hspace*{1cm}
+
+\end{document}
