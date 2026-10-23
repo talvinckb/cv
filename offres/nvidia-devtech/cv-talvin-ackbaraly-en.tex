@@ -1,0 +1,189 @@
+%% ─────────────────────────────────────────────────────────────────────────────
+%% CV — Talvin Ackbaraly (English Version) — NVIDIA, Developer Technology intern
+%% Serif (XCharter), one restrained accent colour, thin rules, bullets, no icons
+%% No photo (requested by NVIDIA): the header runs full width.
+%% Compile: latexmk -pdf cv-talvin-ackbaraly-en.tex
+%% ─────────────────────────────────────────────────────────────────────────────
+\documentclass[10.5pt, a4paper]{extarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[top=1cm, bottom=1cm, left=1.6cm, right=1.6cm]{geometry}
+\usepackage{XCharter}
+\usepackage[letterspace=80]{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage[scaled=0.94,noupquote]{inconsolata}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{pdftitle={Resume — Talvin Ackbaraly}, pdfauthor={Talvin Ackbaraly}}
+
+%% ── Colour system: one accent, everything else neutral ───────────────────────
+%% Deep green: a quiet nod to NVIDIA's brand green, dark enough to read as text.
+\definecolor{accent}{HTML}{3F6B00}  % THE accent: name, sections, links, bullets
+\definecolor{ink}{HTML}{1A1A1A}     % body text (warm near-black, not pure 000)
+\definecolor{soft}{HTML}{6E6E6E}    % secondary information (context, tech)
+\definecolor{hair}{HTML}{C9C9C9}    % section rules
+\definecolor{chipbg}{HTML}{EDF3E1}  % tag pill background
+\definecolor{chipfg}{HTML}{3A5F0A}  % tag pill text
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+\AtBeginDocument{\color{ink}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.02}
+\RaggedRight
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\emergencystretch=1em
+\microtypesetup{expansion=false}
+
+%% Section: letter-spaced small caps over a hairline
+\titleformat{\section}
+  {\large\scshape\lsstyle\color{accent}}{}{0pt}{}
+  [\vspace{-5pt}{\color{hair}\rule{\textwidth}{0.4pt}}]
+\titlespacing*{\section}{0pt}{13pt}{5pt}
+
+
+%% Tag pill: \chip{CUDA}
+\newcommand{\chip}[1]{%
+  \tikz[baseline=(c.base)]{\node[inner xsep=4.5pt, inner ysep=2pt, rounded corners=2.5pt,
+    fill=chipbg, text=chipfg, font=\footnotesize] (c) {#1};}\hspace{1pt}%
+}
+
+
+%% NB: at the head of a `p' cell, {\color{...}} shifts content down one line — always \textcolor.
+
+%% ── 1. Education: stacked entries, no tags ───────────────────────────────
+\newcommand{\edu}[4]{%
+  \textbf{#1}\hfill #2\par\vspace{1.5pt}
+  \textcolor{accent}{\textit{#3}}\par\vspace{1.5pt}
+  {\small\color{soft}#4}\par
+}
+
+%% ── 2. Projects: prose (title first) / tags ──────────────────────────────────
+%% Each row sizes its own tag column: measure the pills' natural width, cap it,
+%% and let the prose take the rest.
+\newlength{\projgapb}\setlength{\projgapb}{0.4cm}
+\newlength{\projmaxtag}\setlength{\projmaxtag}{3.35cm}
+\newlength{\projtagw}\newlength{\projprosew}
+\newsavebox{\projtagbox}
+%% #1 title (leads the prose, no final period), #2 prose, #3 pills.
+\newcommand{\proj}[3]{%
+  \sbox\projtagbox{\begin{varwidth}[t]{\projmaxtag}\raggedleft #3\end{varwidth}}%
+  \setlength{\projtagw}{\wd\projtagbox}%
+  \setlength{\projprosew}{\dimexpr\textwidth-\projgapb-\projtagw\relax}%
+  \noindent
+  \parbox[t]{\projprosew}{\RaggedRight \textbf{#1.} #2}%
+  \hspace{\projgapb}%
+  \usebox\projtagbox
+  \par
+}
+\newcommand{\projgap}{\vspace{10pt}}
+%% Clickable title that stays in ink: \titlelink{url}{Title}
+\newcommand{\titlelink}[2]{\href{#1}{\textcolor{ink}{#2}}}
+
+%% ── 3. Experience: role first, full-width prose ───────────────────────
+%% #1 role, #2 date, #3 employer, #4 pills, #5 prose.
+\newcommand{\job}[5]{%
+  \textbf{#1}\hfill #2\par\vspace{1.5pt}
+  \textcolor{accent}{#3}\hfill {#4}\par\vspace{4pt}
+  #5\par
+}
+
+%% ── 4. Skills: label + pills ─────────────────────────────────────
+\newlength{\skilllab}\setlength{\skilllab}{4.95cm}
+\newcommand{\skillrow}[2]{%
+  \noindent\parbox[t]{\skilllab}{\textbf{#1}}%
+  \parbox[t]{\dimexpr\textwidth-\skilllab\relax}{\RaggedRight #2}\par\vspace{3.5pt}
+}
+
+
+\begin{document}
+
+%% ── Header: full width, no photo ─────────────────────────────────────
+{\color{accent}\fontsize{25}{30}\selectfont\scshape\textls[40]{Talvin Ackbaraly}}\\[6pt]
+\textbf{Final-year internship — Developer Technology, CUDA \& GPU Computing · 6 months from February 2027}\\[5pt]
+{\small
+\href{mailto:talvin.ackbaraly@icloud.com}{talvin.ackbaraly@icloud.com} \enspace·\enspace
+\href{tel:+33769389008}{+33 7 69 38 90 08} \enspace·\enspace
+Paris, France\\[2pt]
+\href{https://talvin-ackbaraly.com}{talvin-ackbaraly.com} \enspace·\enspace
+\href{https://github.com/talvinckb}{github.com/talvinckb} \enspace·\enspace
+\href{https://www.linkedin.com/in/talvin-ackbaraly}{linkedin.com/in/talvin-ackbaraly}}\\[7pt]
+Final-year engineering student at EPITA (Image specialization), focused on GPU computing, real-time
+graphics and performance. I enjoy the developer technology loop: profile an application, find what
+limits it, rework it for the GPU, measure the gain, and explain it to other developers.
+
+\section{GPU Computing \& Graphics}
+
+\proj{\titlelink{https://www.talvin-ackbaraly.com/projects/irgpu/}{GPU motion detection}}{Real-time video background subtraction as a custom GStreamer plugin,
+  with interchangeable C++ and CUDA backends. Profiled with Nsight to locate the bottlenecks, then
+  optimized them: \textbf{$\times$24 speedup} over the CPU version.}
+  {\chip{CUDA}\chip{C++}\chip{Nsight}}
+\projgap
+\proj{\titlelink{https://www.talvin-ackbaraly.com/projects/pogl/}{FluidSim: real-time 3D water simulation}}{SPH fluid physics running entirely on the GPU in
+  GLSL compute shaders (density, pressure, viscosity), with GPU spatial hashing and a parallel
+  bitonic sort for neighbor search. Screen-space water rendering with reflections and refraction.}
+  {\chip{OpenGL}\chip{GLSL}\chip{Compute shaders}}
+\projgap
+\proj{Paper study: parallel tree of shapes}{In-depth study of \textit{A Tree of Shapes Computation
+  Algorithm for Massively Parallel Architectures}: how a classically sequential image hierarchy is
+  restructured for massively parallel hardware. Presented orally with my own slides.}
+  {\chip{Parallel algorithms}\chip{GPU}}
+
+
+\section{Experience}
+
+\job{\titlelink{https://www.talvin-ackbaraly.com/projects/pfee-bnf/}{Final-Year Project — Computer Vision} \textnormal{\color{soft}(team of 4)}}{May 2026 -- ongoing}
+    {EPITA $\times$ National Library of France (Gallica)}{\chip{Python}\chip{PyTorch}\chip{YOLO}}
+    {Detection and classification of heritage illustrations in Gallica's digitized documents, via the
+     IIIF API. In charge of detection: training and benchmarking models on a 10,000-image dataset
+     annotated by the BnF, hyperparameter tuning, reaching \textbf{94.7\%~mAP50} on the validation set.}
+\vspace{11pt}
+\job{Full-Stack \& DevOps Developer \textnormal{\color{soft}(internship)}}{Sept. 2025 -- Jan. 2026}
+    {Studiocanal}{\chip{Java}\chip{Spring Boot}\chip{AWS}\chip{GitLab CI}}
+    {Built features for an internal rights, contracts and catalogue platform used by 100+ employees,
+     within an Agile team. Set up the GitLab CI/CD pipeline for a new module and worked on its AWS
+     infrastructure (EC2, RDS, IAM).}
+
+
+\section{Other Projects}
+
+\proj{\titlelink{https://www.talvin-ackbaraly.com/projects/alpr/}{License plate recognition}}{Classical image processing pipeline (filters, morphology, HOG) and
+  Random Forest, \textbf{86\% precision}. Python vs C++ performance benchmark.}
+  {\chip{C++}\chip{OpenCV}}
+\projgap
+\proj{\titlelink{https://github.com/talvinckb/3D-L-System}{3D L-system plant generator}}{Procedural plants from L-system grammars interpreted by a 3D
+  turtle, drawn with instanced OpenGL rendering and custom GLSL shaders.}
+  {\chip{OpenGL}\chip{GLSL}\chip{C++}}
+
+
+\section{Education}
+
+\edu{EPITA — Engineering School of Computer Science}{Sept. 2022 -- July 2027}
+    {Master of Engineering, Image specialization — Paris}
+    {Core curriculum: algorithms \& data structures, systems programming (C, Unix).\\
+     Image specialization: GPU computing (CUDA), image processing \& synthesis, computer vision.}
+\vspace{7pt}
+\edu{Université du Québec à Chicoutimi (UQAC)}{Jan. -- May 2024}
+    {Academic exchange semester — Québec, Canada}
+    {}
+
+
+\section{Skills}
+
+\skillrow{GPU \& Graphics}{\chip{CUDA}\chip{Nsight}\chip{Profiling}\chip{OpenGL}\chip{GLSL}\chip{Compute shaders}}
+\skillrow{Programming}{\chip{C++}\chip{C}\chip{Python}\chip{Java}\chip{SQL}}
+\skillrow{Tools \& Libraries}{\chip{Linux}\chip{Git}\chip{CMake}\chip{GitLab CI/CD}\chip{Docker}\chip{GStreamer}\chip{Dear ImGui}\chip{OpenCV}\chip{PyTorch}}
+\skillrow{Languages}{French (native), English (professional, TOEIC 845)}
+
+\end{document}
